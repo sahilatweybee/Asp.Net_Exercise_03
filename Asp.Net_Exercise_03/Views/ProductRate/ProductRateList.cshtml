@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ProductRateModel>
+@{
+    ViewData["Title"] = "Product Rate List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="row w-100 justify-content-end">
+    <a href="#" role="button" class="btn text-light bg-success">Add New Product Rate</a>
+</div>
+<table class="mt-3 table table-striped">
+    <thead class="bg-primary text-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Date Of Rate</th>
+            <th scope="col" class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rate in Model)
+        {
+        <tr>
+            <th scope="row">@rate.rate_id</th>
+            <td>@rate.product.product_name</td>
+            <td>@rate.rate</td>
+            <td>@rate.date_of_rate.ToShortDateString()</td>
+            <td class="text-center">
+                <a asp-controller="AssignParty" class="btn btn-primary">Edit</a>
+                <a href="#" role="button" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

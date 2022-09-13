@@ -1,0 +1,32 @@
+﻿@model IEnumerable<PartyModel>
+@{
+    ViewData["Title"] = "PartyList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">PartyList</h1>
+<div class="row w-100 justify-content-end">
+    <a asp-controller="Party" asp-action="PartyAdd" role="button" class="btn text-light bg-success">Add New Party</a>
+</div>
+<table class="mt-3 table table-striped">
+    <thead class="bg-primary text-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Party</th>
+            <th scope="col" class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var party in Model)
+        {
+            <tr>
+                <th scope="row">@party.party_id</th>
+                <td>@party.party_name</td>
+                <td class="text-center">
+                    <a asp-controller="Party" asp-action="GetPartyById" class="btn btn-primary">Edit</a>
+                    <a href="#" role="button" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
