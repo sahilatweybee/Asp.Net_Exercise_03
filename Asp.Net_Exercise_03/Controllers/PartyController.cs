@@ -67,8 +67,17 @@ namespace Asp.Net_Exercise_03.Controllers
         [HttpPost("Party/PartyList/{party_id:int}/{party_name}")]
         public async Task<IActionResult> PartyEdit([FromRoute] int party_id, PartyModel partyModl)
         {
-            await _PartyRepo.EditPartyAsync(partyModl, party_id);
-            return RedirectToAction(nameof(PartyAdd));
+            string msg = "";
+            if (await _PartyRepo.IsContainsParty(partyModl) == true)
+            {
+                msg = "A record with the same values already exists try something else!!";
+            }
+            else
+            {
+                await _PartyRepo.EditPartyAsync(partyModl, party_id);
+            }
+            
+            return RedirectToAction(nameof(PartyAdd), new { Message = msg});
         }
 
     }

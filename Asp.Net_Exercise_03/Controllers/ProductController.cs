@@ -57,6 +57,7 @@ namespace Asp.Net_Exercise_03.Controllers
         [HttpGet("{product_id:int}/{product_name}")]
         public ViewResult ProductEdit([FromRoute] int product_id, string product_name, string Message = "")
         {
+            ViewBag.message = Message;
             ViewData["Title"] = "Edit Product";
             return View("productAddEdit");
         }
