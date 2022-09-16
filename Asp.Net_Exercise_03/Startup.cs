@@ -33,6 +33,7 @@ namespace Asp.Net_Exercise_03
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IAssignPartyRepository, AssignPartyRepository>();
             services.AddTransient<IProductRateRepository, ProductRateRepository>();
+            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddAutoMapper(typeof(Startup));
         }
 

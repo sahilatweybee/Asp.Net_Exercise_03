@@ -9,7 +9,7 @@ namespace Asp.Net_Exercise_03.DataBase
     public class Party
     {
         [Key]
-        public int party_id { get; set; }
-        public string party_name { get; set; }
+        public int Party_id { get; set; }
+        public string Party_name { get; set; }
     }
 }

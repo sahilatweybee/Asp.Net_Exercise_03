@@ -21,7 +21,7 @@ namespace Asp.Net_Exercise_03.Repository
 
         public async Task<List<AssignPartyModel>> GetAllAssignPartiesAsync()
         {
-            var parties = await _Context.assign_party.Include(x => x.party).Include(x  => x.product).ToListAsync();
+            var parties = await _Context.Assign_party_tbl.Include(x => x.Party_tbl).Include(x  => x.Product_tbl).ToListAsync();
             return _Mapper.Map<List<AssignPartyModel>>(parties);
         }
 
@@ -29,13 +29,58 @@ namespace Asp.Net_Exercise_03.Repository
         {
             var assignParty = new AssignParty()
             {
-                party = assignPartyModl.party,
-                product = assignPartyModl.product
+                Party_id = assignPartyModl.Party_id, 
+                Product_id = assignPartyModl.Product_id
             };
-            await _Context.assign_party.AddAsync(assignParty);
+            await _Context.Assign_party_tbl.AddAsync(assignParty);
             await _Context.SaveChangesAsync();
 
-            return assignParty.assign_id;
+            return assignParty.Assign_id;
+        }
+
+        public async Task DeleteAssignAsync(int id)
+        {
+            var assign = new AssignParty()
+            {
+                Assign_id = id
+            };
+            _Context.Assign_party_tbl.Remove(assign);
+            await _Context.SaveChangesAsync();
+        }
+
+        public async Task EditAssignPartyAsync(AssignPartyModel assignPartyModl, int id)
+        {
+            var assign = new AssignParty()
+            {
+                Assign_id = id,
+                Party_id = assignPartyModl.Party_id,
+                Product_id = assignPartyModl.Product_id
+            };
+            _Context.Assign_party_tbl.Update(assign);
+            await _Context.SaveChangesAsync();
+        }
+
+        public async Task<List<ProductModel>> GetRemainingProductsByParty(int id)
+        {
+            //Didn't Work When tried using 2 separate tables!!
+
+            var products = await _Context.Product_tbl
+                .Except(_Context.Assign_party_tbl
+                    .Where(x => x.Party_id == id)
+                    .Include(x => x.Product_tbl)
+                    .Select(x => x.Product_tbl)
+                ).ToListAsync();
+            return _Mapper.Map<List<ProductModel>>(products);
+        }
+
+        public async Task<bool> IsContainAssign(AssignPartyModel assignModl)
+        {
+            var model = new AssignParty()
+            {
+                Party_id = assignModl.Party_id,
+                Product_id = assignModl.Product_id
+            };
+            return await _Context.Assign_party_tbl.ContainsAsync(model);
         }
     }
 }

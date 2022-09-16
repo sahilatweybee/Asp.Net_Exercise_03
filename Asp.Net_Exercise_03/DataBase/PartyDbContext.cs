@@ -13,15 +13,17 @@ namespace Asp.Net_Exercise_03.DataBase
         {
 
         }
-        public DbSet<Party> party { get; set; }
-        public DbSet<Product> product { get; set; }
-        public DbSet<AssignParty> assign_party { get; set; }
-        public DbSet<ProductRate> rate { get; set; }
+        public DbSet<Party> Party_tbl { get; set; }
+        public DbSet<Product> Product_tbl { get; set; }
+        public DbSet<AssignParty> Assign_party_tbl { get; set; }
+        public DbSet<ProductRate> Rate_tbl { get; set; }
+        public DbSet<Invoice> Invoice_tbl { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Party>().HasIndex(x => new { x.party_name }).IsUnique(true);
-            modelBuilder.Entity<Product>().HasIndex(x => x.product_name).IsUnique(true);
+            modelBuilder.Entity<Party>().HasIndex(x => new { x.Party_name }).IsUnique(true);
+            modelBuilder.Entity<Product>().HasIndex(x => x.Product_name).IsUnique(true);
+            modelBuilder.Entity<ProductRate>().HasIndex(x => x.Product_id).IsUnique(true);
         }
     }
 }

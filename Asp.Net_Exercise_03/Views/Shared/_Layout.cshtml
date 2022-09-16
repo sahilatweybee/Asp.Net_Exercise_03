@@ -26,6 +26,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3 w-75 m-auto">
+            <h1 class="text-center">@ViewData["Title"]</h1>
             @RenderBody()
         </main>
     </div>
@@ -35,9 +36,10 @@
             &copy; 2022 - Asp.Net_Exercise_03 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/f490d52a52.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

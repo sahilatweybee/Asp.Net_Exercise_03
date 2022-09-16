@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<ProductModel>
 @{
-    ViewData["Title"] = "ProductList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Produc List";
 }
 
-<h1 class="text-center">Product List</h1>
 <div class="row w-100 justify-content-end">
     <a asp-controller="Product" asp-action="ProductAdd" role="button" class="btn text-light bg-success">Add New Party</a>
 </div>
@@ -20,11 +18,14 @@
         @foreach (var product in Model)
         {
             <tr>
-                <th scope="row">@product.product_id</th>
-                <td>@product.product_name</td>
+                <th scope="row">@product.Product_id</th>
+                <td>@product.Product_name</td>
                 <td class="text-center">
-                    <a href="#" class="btn btn-primary">Edit</a>
-                    <a href="#" role="button" class="btn btn-danger">Delete</a>
+                    <a asp-controller="Product" 
+                       asp-action="ProductEdit" 
+                       asp-route-Product_id="@product.Product_id" 
+                       asp-route-Product_name="@product.Product_name" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Product" asp-action="DeleteProduct" asp-route-Product_id="@product.Product_id" role="button" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

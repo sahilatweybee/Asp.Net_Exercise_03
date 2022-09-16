@@ -9,7 +9,7 @@ namespace Asp.Net_Exercise_03.DataBase
     public class Product
     {
         [Key]
-        public int product_id { get; set; }
-        public string product_name { get; set; }
+        public int Product_id { get; set; }
+        public string Product_name { get; set; }
     }
 }

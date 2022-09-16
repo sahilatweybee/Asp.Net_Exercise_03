@@ -20,20 +20,47 @@ namespace Asp.Net_Exercise_03.Repository
 
         public async Task<List<PartyModel>> GetAllPartiesAsync()
         {
-            var parties = await _Context.party.OrderBy(x => x.party_name).ToListAsync();
+            var parties = await _Context.Party_tbl.OrderBy(x => x.Party_name).ToListAsync();
             return _Mapper.Map<List<PartyModel>>(parties);
         }
 
-        public async Task<int> AddParty(PartyModel partyModl)
+        public async Task<int> AddPartyAsync(PartyModel partyModl)
         {
             var party = new Party()
             {
-                party_name = partyModl.party_name
+                Party_name = partyModl.Party_name
             };
-            await _Context.party.AddAsync(party);
+            await _Context.Party_tbl.AddAsync(party);
             await _Context.SaveChangesAsync();
 
-            return party.party_id;
+            return party.Party_id;
+        }
+
+        public async Task DeletePartyAsync(int id)
+        {
+            var party = new Party()
+            {
+                Party_id = id
+            };
+            _Context.Party_tbl.Remove(party);
+            await _Context.SaveChangesAsync();
+        }
+
+        public async Task EditPartyAsync(PartyModel partyModl, int id)
+        {
+            var party = new Party()
+            {
+                Party_id = id,
+                Party_name = partyModl.Party_name
+            };
+            _Context.Party_tbl.Update(party);
+            await _Context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsContainsParty(PartyModel partyModl)
+        {
+            var model = _Mapper.Map<Party>(partyModl);
+            return await _Context.Party_tbl.ContainsAsync(model);
         }
     }
 }

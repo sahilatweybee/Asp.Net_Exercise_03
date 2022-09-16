@@ -1,27 +1,22 @@
 ﻿@model AssignPartyModel
 @inject Asp.Net_Exercise_03.Repository.IPartyRepository _PartyRepo
-@inject Asp.Net_Exercise_03.Repository.IProductRepository _ProductRepo 
-@{
-    ViewData["Title"] = "Assign Party";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1 class="text-center">@ViewData["Title"]</h1>
-<div class="text-center">@ViewData["message"]</div>
+<div class="text-center">@ViewBag.message</div>
 <form asp-controller="AssignParty"
       method="post">
     <div class="form-group row">
-        <label asp-for="party" class="my-2 col-form-label col-sm-2">Party Name:</label>
+        <label asp-for="Party_id" class="my-2 col-form-label text-right col-sm-2">Party:</label>
         <div class="col-sm-10">
-            <select asp-for="party" name="party" class="form-control my-2" asp-items="(await _PartyRepo.GetAllPartiesAsync()).Select(x => new SelectListItem() { Text = x.party_name, Value = x.party_id.ToString() })" ></select>
-            <span class="text-danger" asp-validation-for="party"></span>
+            <select id="PartySelect-Assign" asp-for="Party_id" name="party_id" class="form-control my-2" asp-items="(await _PartyRepo.GetAllPartiesAsync()).Select(x => new SelectListItem() { Text = x.Party_name, Value = x.Party_id.ToString() })">
+                <option value="0">--Select Party--</option>
+            </select>
+            <span class="text-danger" asp-validation-for="Party_id"></span>
         </div>
     </div>
     <div class="form-group row">
-        <label asp-for="product" class="my-2 col-form-label col-sm-2">Party Name:</label>
+        <label asp-for="Product_id" class="my-2 col-form-label text-right col-sm-2">Product:</label>
         <div class="col-sm-10">
-            <select asp-for="product" name="product" class="form-control my-2" asp-items="(await _ProductRepo.GetAllProductsAsync()).Select(x => new SelectListItem() { Text = x.product_name, Value = x.product_id.ToString() })" ></select>
-            <span class="text-danger" asp-validation-for="product"></span>
+            <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" class="form-control my-2"></select>
+            <span class="text-danger" asp-validation-for="Product_id"></span>
         </div>
     </div>
     <div class="form-group justify-content-center row">
@@ -36,4 +31,57 @@
         <input type="reset" value="Cancel" class="btn btn-light m-3" />
     </div>
 </form>
+@if (ViewBag.Action == "Add")
+{
+    @section Scripts{
+        <script>
+            $(function () {
+                $("#PartySelect-Assign").change(function () {
+                    Id = $("#PartySelect-Assign").val();
 
+                    $.ajax({
+                        url: "http://localhost:51041/AssignParty/GetProductsForParty",
+                        type: 'GET',
+                        dataType: 'json',
+                        data: { id: Id },
+                        success: function (data) {
+                            $("#ProductSelect-Assign").empty();
+                            $.each(data, function (i, row) {
+                                $("#ProductSelect-Assign").append($("<option></option>").val(row.product_id).html(row.product_name));
+                            });
+                        },
+                        error: function () {
+                            alert("There was an error!!");
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+}
+else
+{
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                Id = $("#PartySelect-Assign").val();
+
+                $.ajax({
+                    url: "http://localhost:51041/AssignParty/GetProductsForParty",
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { id: Id },
+                    success: function (data) {
+                        $("#ProductSelect-Assign").empty();
+                        $.each(data, function (i, row) {
+                            $("#ProductSelect-Assign").append($("<option></option>").val(row.product_id).html(row.product_name));
+                        });
+                    },
+                    error: function () {
+                        alert("There was an error!!");
+                    }
+                });
+            });
+        </script>
+    }
+}

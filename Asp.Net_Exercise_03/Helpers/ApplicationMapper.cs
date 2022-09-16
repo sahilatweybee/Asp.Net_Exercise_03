@@ -19,6 +19,8 @@ namespace Asp.Net_Exercise_03.Helpers
             CreateMap<AssignParty, AssignPartyModel>().ReverseMap();
             
             CreateMap<ProductRate, ProductRateModel>().ReverseMap();
+            
+            CreateMap<Invoice, InvoiceModel>().ReverseMap();
         }
     }
 }

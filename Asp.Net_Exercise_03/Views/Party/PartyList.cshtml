@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<PartyModel>
 @{
-    ViewData["Title"] = "PartyList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Party List";
 }
 
-<h1 class="text-center">PartyList</h1>
 <div class="row w-100 justify-content-end">
     <a asp-controller="Party" asp-action="PartyAdd" role="button" class="btn text-light bg-success">Add New Party</a>
 </div>
@@ -20,11 +18,14 @@
         @foreach (var party in Model)
         {
             <tr>
-                <th scope="row">@party.party_id</th>
-                <td>@party.party_name</td>
+                <th scope="row">@party.Party_id</th>
+                <td>@party.Party_name</td>
                 <td class="text-center">
-                    <a asp-controller="Party" asp-action="GetPartyById" class="btn btn-primary">Edit</a>
-                    <a href="#" role="button" class="btn btn-danger">Delete</a>
+                    <a asp-controller="Party" 
+                       asp-action="PartyEdit" 
+                       asp-route-Party_id="@party.Party_id" 
+                       asp-route-Party_name="@party.Party_name" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Party" asp-action="DeleteParty" asp-route-party_id="@party.Party_id" role="button" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

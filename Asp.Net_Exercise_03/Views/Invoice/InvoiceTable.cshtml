@@ -1,0 +1,29 @@
+﻿@using Microsoft.EntityFrameworkCore
+@model IEnumerable<InvoiceModel>
+@inject Asp.Net_Exercise_03.DataBase.PartyDbContext _Context
+
+<table class="mt-3 table table-striped">
+    <thead class="bg-primary text-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Party</th>
+            <th scope="col">Product</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Invc in Model)
+        {
+            <tr>
+                <th scope="row">@Invc.Invoice_id</th>
+                <td>@await _Context.Party_tbl.Where(x => x.Party_id == Invc.Party_id).Select(x => x.Party_name).FirstOrDefaultAsync()</td>
+                <td>@await _Context.Product_tbl.Where(x => x.Product_id == Invc.Product_id).Select(x => x.Product_name).FirstOrDefaultAsync()</td>
+                <td>@Invc.Product_rate</td>
+                <td>@Invc.Quantity</td>
+                <td>@Invc.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>

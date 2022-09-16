@@ -21,103 +21,137 @@ namespace Asp.Net_Exercise_03.Migrations
 
             modelBuilder.Entity("Asp.Net_Exercise_03.DataBase.AssignParty", b =>
                 {
-                    b.Property<int>("assign_id")
+                    b.Property<int>("Assign_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("party_id")
+                    b.Property<int>("Party_id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("product_id")
+                    b.Property<int>("Product_id")
                         .HasColumnType("int");
 
-                    b.HasKey("assign_id");
+                    b.HasKey("Assign_id");
 
-                    b.HasIndex("party_id");
+                    b.HasIndex("Party_id");
 
-                    b.HasIndex("product_id");
+                    b.HasIndex("Product_id");
 
-                    b.ToTable("assign_party");
+                    b.ToTable("Assign_party_tbl");
+                });
+
+            modelBuilder.Entity("Asp.Net_Exercise_03.DataBase.Invoice", b =>
+                {
+                    b.Property<int>("Invoice_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Party_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Product_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Product_rate")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
+
+                    b.HasKey("Invoice_id");
+
+                    b.ToTable("Invoice_tbl");
                 });
 
             modelBuilder.Entity("Asp.Net_Exercise_03.DataBase.Party", b =>
                 {
-                    b.Property<int>("party_id")
+                    b.Property<int>("Party_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("party_name")
+                    b.Property<string>("Party_name")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("party_id");
+                    b.HasKey("Party_id");
 
-                    b.HasIndex("party_name")
+                    b.HasIndex("Party_name")
                         .IsUnique()
-                        .HasFilter("[party_name] IS NOT NULL");
+                        .HasFilter("[Party_name] IS NOT NULL");
 
-                    b.ToTable("party");
+                    b.ToTable("Party_tbl");
                 });
 
             modelBuilder.Entity("Asp.Net_Exercise_03.DataBase.Product", b =>
                 {
-                    b.Property<int>("product_id")
+                    b.Property<int>("Product_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("product_name")
+                    b.Property<string>("Product_name")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("product_id");
+                    b.HasKey("Product_id");
 
-                    b.HasIndex("product_name")
+                    b.HasIndex("Product_name")
                         .IsUnique()
-                        .HasFilter("[product_name] IS NOT NULL");
+                        .HasFilter("[Product_name] IS NOT NULL");
 
-                    b.ToTable("product");
+                    b.ToTable("Product_tbl");
                 });
 
             modelBuilder.Entity("Asp.Net_Exercise_03.DataBase.ProductRate", b =>
                 {
-                    b.Property<int>("rate_id")
+                    b.Property<int>("Rate_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("date_of_rate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("Date_of_Rate")
+                        .HasColumnType("Date");
 
-                    b.Property<int?>("product_id")
+                    b.Property<int>("Product_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("rate")
+                    b.Property<int>("Product_rate")
                         .HasColumnType("int");
 
-                    b.HasKey("rate_id");
+                    b.HasKey("Rate_id");
 
-                    b.HasIndex("product_id");
+                    b.HasIndex("Product_id")
+                        .IsUnique();
 
-                    b.ToTable("rate");
+                    b.ToTable("Rate_tbl");
                 });
 
             modelBuilder.Entity("Asp.Net_Exercise_03.DataBase.AssignParty", b =>
                 {
-                    b.HasOne("Asp.Net_Exercise_03.DataBase.Party", "party")
+                    b.HasOne("Asp.Net_Exercise_03.DataBase.Party", "Party_tbl")
                         .WithMany()
-                        .HasForeignKey("party_id");
+                        .HasForeignKey("Party_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Asp.Net_Exercise_03.DataBase.Product", "product")
+                    b.HasOne("Asp.Net_Exercise_03.DataBase.Product", "Product_tbl")
                         .WithMany()
-                        .HasForeignKey("product_id");
+                        .HasForeignKey("Product_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Asp.Net_Exercise_03.DataBase.ProductRate", b =>
                 {
-                    b.HasOne("Asp.Net_Exercise_03.DataBase.Product", "product")
+                    b.HasOne("Asp.Net_Exercise_03.DataBase.Product", "Product_tbl")
                         .WithMany()
-                        .HasForeignKey("product_id");
+                        .HasForeignKey("Product_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

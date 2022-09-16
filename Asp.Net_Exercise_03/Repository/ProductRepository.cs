@@ -20,7 +20,7 @@ namespace Asp.Net_Exercise_03.Repository
 
         public async Task<List<ProductModel>> GetAllProductsAsync()
         {
-            var products = await _Context.product.OrderBy(x => x.product_name).ToListAsync();
+            var products = await _Context.Product_tbl.OrderBy(x => x.Product_name).ToListAsync();
             return _Mapper.Map<List<ProductModel>>(products);
         }
 
@@ -28,12 +28,38 @@ namespace Asp.Net_Exercise_03.Repository
         {
             var product = new Product()
             {
-                product_name = productModl.product_name
+                Product_name = productModl.Product_name
             };
-            await _Context.product.AddAsync(product);
+            await _Context.Product_tbl.AddAsync(product);
             await _Context.SaveChangesAsync();
 
-            return product.product_id;
+            return product.Product_id;
+        }
+
+        public async Task DeleteProductAsync(int id)
+        {
+            var product = new Product()
+            {
+                Product_id = id
+            };
+            _Context.Product_tbl.Remove(product);
+            await _Context.SaveChangesAsync();
+        }
+
+        public async Task EditProductAsync(ProductModel productModl, int id)
+        {
+            var product = new Product()
+            {
+                Product_id = id,
+                Product_name = productModl.Product_name            };
+            _Context.Product_tbl.Update(product);
+            await _Context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsContainsProduct(ProductModel producrModl)
+        {
+            var model = _Mapper.Map<Product>(producrModl);
+            return await _Context.Product_tbl.ContainsAsync(model);
         }
     }
 }

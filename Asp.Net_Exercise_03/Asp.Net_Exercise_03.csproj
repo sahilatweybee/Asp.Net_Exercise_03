@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220914052010_Assign.cs" />
+    <Compile Remove="Migrations\20220914052010_Assign.Designer.cs" />
+    <Compile Remove="Migrations\20220914052406_Assign.cs" />
+    <Compile Remove="Migrations\20220914052406_Assign.Designer.cs" />
+    <Compile Remove="Migrations\20220914053032_Assign.cs" />
+    <Compile Remove="Migrations\20220914053032_Assign.Designer.cs" />
+    <Compile Remove="Migrations\20220914054207_AssignParty.cs" />
+    <Compile Remove="Migrations\20220914054207_AssignParty.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.27" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.28">

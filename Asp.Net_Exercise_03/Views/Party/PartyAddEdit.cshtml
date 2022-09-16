@@ -1,24 +1,19 @@
 ﻿@model PartyModel
-@{
-    ViewData["Title"] = "Party Add";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
-<h1 class="text-center">@ViewData["Title"]</h1>
-<div class="text-center">@ViewData["message"]</div>
+<div class="text-center">@ViewBag.message</div>
 <form asp-controller="Party"
       asp-action="PartyAdd"
       method="post">
     <div class="form-group row">
-        <label asp-for="party_name" class="my-2 col-form-label col-sm-2">Party Name:</label>
+        <label asp-for="Party_name" class="my-2 col-form-label text-right col-sm-2">Party Name:</label>
         <div class="col-sm-10">
-            <input asp-for="party_name" name="party_name" class="form-control my-2" />
-            <span class="text-danger" asp-validation-for="party_name"></span>
+            <input asp-for="Party_name" name="party_name" class="form-control my-2" />
+            <span class="text-danger" asp-validation-for="Party_name"></span>
         </div>
     </div>
     <div class="form-group justify-content-center row">
-        @if (ViewData["Title"] == "Party Add") 
-        { 
+        @if (ViewData["Title"] == "Add Party")
+        {
             <input type="submit" asp-controller="Party" asp-action="PartyAdd" value="Add Party" class="btn btn-success m-3" />
         }
         else

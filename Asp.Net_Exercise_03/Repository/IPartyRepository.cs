@@ -6,7 +6,10 @@ namespace Asp.Net_Exercise_03.Repository
 {
     public interface IPartyRepository
     {
-        Task<int> AddParty(PartyModel partyModl);
+        Task<int> AddPartyAsync(PartyModel partyModl);
+        Task DeletePartyAsync(int id);
+        Task EditPartyAsync(PartyModel partyModl, int id);
         Task<List<PartyModel>> GetAllPartiesAsync();
+        Task<bool> IsContainsParty(PartyModel partyModl);
     }
 }

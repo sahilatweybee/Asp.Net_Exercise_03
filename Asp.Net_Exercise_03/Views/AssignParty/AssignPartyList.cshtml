@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<AssignPartyModel>
 @{
-    ViewData["Title"] = "AssignPartyList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Assign Party List";
 }
 
-<h1 class="text-center">Assign Party List</h1>
 <div class="row w-100 justify-content-end">
     <a asp-controller="AssignParty" asp-action="AssignPartyAdd" role="button" class="btn text-light bg-success">Add New Party</a>
 </div>
@@ -21,12 +19,16 @@
         @foreach (var assign in Model)
         {
             <tr>
-                <th scope="row">@assign.assign_id</th>
-                <td>@assign.party.party_name</td>
-                <td>@assign.product.product_name</td>
+                <th scope="row">@assign.Assign_id</th>
+                <td>@assign.Party_tbl.Party_name</td>
+                <td>@assign.Product_tbl.Product_name</td>
                 <td class="text-center">
-                    <a asp-controller="AssignParty"  class="btn btn-primary">Edit</a>
-                    <a href="#" role="button" class="btn btn-danger">Delete</a>
+                    <a asp-controller="AssignParty" 
+                       asp-action="AssignPartyEdit" 
+                       asp-route-Assign_id="@assign.Assign_id" 
+                       asp-route-Party_id="@assign.Party_id" 
+                       asp-route-Product_id="@assign.Product_id" class="btn btn-primary">Edit</a>
+                    <a asp-controller="AssignParty" asp-action="DeleteAssign" asp-route-Assign_id="@assign.Assign_id" role="button" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
