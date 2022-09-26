@@ -61,6 +61,7 @@ namespace Asp.Net_Exercise_03.Controllers
         public ViewResult AssignPartyEdit([FromRoute] int assign_id, int party_id, int product_id, string Message = "")
         {
             ViewData["Title"] = "Edit Assigned Party";
+            ViewBag.message = Message;
             return View("AssignPartyAddEdit");
         }
 

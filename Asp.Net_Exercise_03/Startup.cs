@@ -44,10 +44,6 @@ namespace Asp.Net_Exercise_03
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -57,7 +53,7 @@ namespace Asp.Net_Exercise_03
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "Party",
+                    name: "Default",
                     pattern: "{controller=Party}/{action=PartyList}/{id?}");
             });
         }

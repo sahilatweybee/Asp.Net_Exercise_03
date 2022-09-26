@@ -58,9 +58,10 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpGet("Party/PartyList/{party_id:int}/{party_name}")]
-        public ViewResult PartyEdit([FromRoute] int party_id, string party_name)
+        public ViewResult PartyEdit([FromRoute] int party_id, string party_name, string Message="")
         {
             ViewData["Title"] = "Edit Party";
+            ViewBag.message = Message;
             return View("PartyAddEdit");
         }
 
@@ -77,7 +78,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 await _PartyRepo.EditPartyAsync(partyModl, party_id);
             }
             
-            return RedirectToAction(nameof(PartyAdd), new { Message = msg});
+            return RedirectToAction(nameof(PartyEdit), new { Message = msg});
         }
 
     }

@@ -23,11 +23,10 @@ namespace Asp.Net_Exercise_03.Controllers
             return View(Rates);
         }
         [HttpGet]
-        public ViewResult ProductRateAdd (bool isSuccess = false, string message = "")
+        public ViewResult ProductRateAdd (string message = "")
         {
             ViewBag.message = message;
             ViewData["Title"] = "Add Product Rate";
-            ViewBag.isSuccess = isSuccess;
             return View("ProductRateAddEdit");
         }
 
@@ -47,7 +46,7 @@ namespace Asp.Net_Exercise_03.Controllers
                     msg = "Rate added successfully.";
                 }
             }
-            return RedirectToAction(nameof(ProductRateAdd), new { isSuccess = true, message= msg});
+            return RedirectToAction(nameof(ProductRateAdd), new { message= msg});
         }
 
         [Route("{Rate_id:int}")]
@@ -60,7 +59,6 @@ namespace Asp.Net_Exercise_03.Controllers
         [HttpGet("{Rate_id:int}/{Product_id:int}/{Product_rate:int}/{Date_of_Rate}")]
         public ViewResult ProductRateEdit([FromRoute] int Rate_id,int Product_id, int Product_rate, string Date_of_Rate, bool IsSuccess = false, string Message = "")
         {
-            ViewBag.isSuccess = IsSuccess;
             ViewBag.message = Message;
             ViewData["Title"] = "Edit Product Rate";
             return View("ProductRateAddEdit");

@@ -1,6 +1,9 @@
 ﻿@model ProductModel
 
-<div class="text-center">@ViewBag.message</div>
+@if (ViewBag.Message != "")
+{
+    <div class="alert alert-warning text-center" role="alert">@ViewBag.message</div>
+}
 <form asp-controller="Product"
       method="post">
     <div class="form-group row">
@@ -19,6 +22,6 @@
         {
             <input type="submit" asp-controller="Product" asp-action="ProductEdit" value="Update Product" class="btn btn-success m-3" />
         }
-        <input type="reset" value="Cancel" class="btn btn-light m-3" />
+        <a asp-controller="Product" asp-action="ProductList" class="btn btn-light m-3" id="cancel-btn">Cancel</a>
     </div>
 </form>

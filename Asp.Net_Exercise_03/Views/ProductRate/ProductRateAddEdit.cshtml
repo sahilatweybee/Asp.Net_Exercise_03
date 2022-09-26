@@ -1,7 +1,10 @@
 ﻿@model ProductRateModel
 @inject Asp.Net_Exercise_03.Repository.IProductRepository _ProductRepo
 
-<div class="mt-3 text-center text-danger">@ViewBag.message</div>
+@if (ViewBag.Message != "")
+{
+    <div class="alert alert-warning text-center" role="alert">@ViewBag.message</div>
+}
 <form asp-controller="ProductRate"
       method="post">
     <div class="form-group row">
@@ -23,7 +26,7 @@
     <div class="form-group row">
         <label asp-for="Date_of_Rate" class="my-2 col-form-label text-right col-sm-2">Date of Rate:</label>
         <div class="col-sm-10">
-            <input type="datetime" asp-for="Date_of_Rate" name="Date_of_Rate" class="form-control my-2" id="date" readonly/>
+            <input type="datetime" asp-for="Date_of_Rate" name="Date_of_Rate" class="form-control my-2" id="date" value="@DateTime.Now.ToShortDateString()" />
             <span class="text-danger" asp-validation-for="Date_of_Rate"></span>
         </div>
     </div>
@@ -36,7 +39,7 @@
         {
             <input type="submit" asp-controller="ProductRate" asp-action="ProductRateEdit" value="Update Product Rate" class="btn btn-success m-3" />
         }
-        <input type="reset" value="Cancel" class="btn btn-light m-3" />
+        <a asp-controller="ProductRate" asp-action="ProductRateList" class="btn btn-light m-3" id="cancel-btn">Cancel</a>
     </div>
 </form>
 @if (ViewData["Title"] != "Add Product Rate")
@@ -48,19 +51,18 @@
                 $("#ProductSelect-Rate").change(function () {
                     var Id = $("#ProductSelect-Rate").val();
                     debugger;
-                    $.ajax(
-                        {
-                            url: "",
-                            type: 'GET',
-                            dataType: 'json',
-                            data: { id: Id },
-                            success: function (data) {
-                                $("#ProductRate-txt").val(data);
-                            },
-                            error: function () {
-                                alert("There was an Error!!");
-                            }
-                        });
+                    $.ajax({
+                        url: "",
+                        type: 'GET',
+                        dataType: 'json',
+                        data: { id: Id },
+                        success: function (data) {
+                            $("#ProductRate-txt").val(data);
+                        },
+                        error: function () {
+                            alert("There was an Error!!");
+                        }
+                    });
                 });
             });
         </script>
