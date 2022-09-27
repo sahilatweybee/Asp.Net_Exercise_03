@@ -1,10 +1,14 @@
 ﻿@model AssignPartyModel
 @inject Asp.Net_Exercise_03.Repository.IPartyRepository _PartyRepo
-
-@if (ViewBag.Message != "")
+@if (ViewBag.IsSuccess == 1)
 {
-    <div class="alert alert-warning text-center" role="alert">@ViewBag.message</div>
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
 }
+else if (ViewBag.IsSuccess == 2)
+{
+    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
+}
+
 <form asp-controller="AssignParty"
       method="post">
     <div class="form-group row">
@@ -24,7 +28,7 @@
         </div>
     </div>
     <div class="form-group justify-content-center row">
-        @if (ViewData["Title"] == "Assign Party")
+        @if (ViewData["Title"].ToString() == "Assign Party")
         {
             <input type="submit" asp-controller="AssignParty" asp-action="AssignPartyAdd" value="Assign Party" class="btn btn-success m-3" />
         }
@@ -35,14 +39,14 @@
         <a asp-controller="AssignParty" asp-action="AssignPartyList" class="btn btn-light m-3" id="cancel-btn">Cancel</a>
     </div>
 </form>
-@if (ViewData["Title"] == "Assign Party")
+@if (ViewData["Title"].ToString() == "Assign Party")
 {
     @section Scripts{
         <script>
             $(function () {
                 $("#PartySelect-Assign").change(function () {
                     Id = $("#PartySelect-Assign").val();
-                    debugger;
+
                     $.ajax({
                         url: "http://localhost:51041/AssignParty/GetProductsForParty",
                         type: 'GET',

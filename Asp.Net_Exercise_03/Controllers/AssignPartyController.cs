@@ -23,10 +23,10 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpGet]
-        public ViewResult AssignPartyAdd(string Message = "", bool isSuccess = false)
+        public ViewResult AssignPartyAdd(string Message = "", int isSuccess = 0)
         {
             ViewData["Title"] = "Assign Party";
-            ViewBag.isSuccess = isSuccess;
+            ViewBag.IsSuccess = isSuccess;
             ViewBag.message = Message;
             return View("AssignPartyAddEdit");
         }
@@ -34,20 +34,23 @@ namespace Asp.Net_Exercise_03.Controllers
         [HttpPost]
         public async Task<IActionResult> AssignPartyAdd(AssignPartyModel AssignpartyModl)
         {
+            ViewData["Title"] = "Assign Party";
             string msg = "";
             if (ModelState.IsValid)
             {
                 if (await _AssignPartyRepo.IsContainAssign(AssignpartyModl) == true)
                 {
                     msg = "A record with the same values already exists try something else!!";
+                    return RedirectToAction(nameof(AssignPartyAdd), new { isSuccess = 2, Message = msg }); ;
                 }
                 else
                 {
                     int id = await _AssignPartyRepo.AddAssignParty(AssignpartyModl);
                     msg = "Party assigned successfully";
+                    return RedirectToAction(nameof(AssignPartyAdd), new { isSuccess = 1, Message = msg });
                 }
             }
-            return RedirectToAction(nameof(AssignPartyAdd), new { isSuccess = true, Message = msg });;
+            return View("AssignPartyAddEdit");
         }
 
         [Route("{assign_id:int}")]
@@ -58,10 +61,11 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpGet("{assign_id:int}/{party_id:int}/{product_id:int}")]
-        public ViewResult AssignPartyEdit([FromRoute] int assign_id, int party_id, int product_id, string Message = "")
+        public ViewResult AssignPartyEdit([FromRoute] int assign_id, int party_id, int product_id, string Message = "", int isSuccess = 0)
         {
             ViewData["Title"] = "Edit Assigned Party";
             ViewBag.message = Message;
+            ViewBag.IsSuccess = isSuccess;
             return View("AssignPartyAddEdit");
         }
 
@@ -74,20 +78,23 @@ namespace Asp.Net_Exercise_03.Controllers
                 if (await _AssignPartyRepo.IsContainAssign(assignModl) == true)
                 {
                     msg = "A record with the same values already exists try something else!!";
+                    return RedirectToAction(nameof(AssignPartyEdit), new { isSuccess = 2, Message = msg });
                 }
                 else
                 {
                     await _AssignPartyRepo.EditAssignPartyAsync(assignModl, assign_id);
-                    return RedirectToAction(nameof(AssignPartyList));
+                    msg = "Assign Party Updated Successfully.";
+                    return RedirectToAction(nameof(AssignPartyEdit), new { isSuccess = 1, Message = msg });
                 }
+            
             }
-            return RedirectToAction(nameof(AssignPartyEdit),new { Message = msg});
+            return View("AssignPartyAddEdit");
         }
 
         public async Task<JsonResult> GetProductsForParty(int id)
         {
-            List<ProductModel> Products = new List<ProductModel>();
-            Products = await _AssignPartyRepo.GetRemainingProductsByParty(id);
+            // Products = new List<ProductModel>();
+            List<ProductModel> Products = await _AssignPartyRepo.GetRemainingProductsByParty(id);
             Products.Insert(0, new ProductModel()
             {
                 Product_id = 0,

@@ -58,8 +58,15 @@ namespace Asp.Net_Exercise_03.Repository
 
         public async Task<bool> IsContainsProduct(ProductModel producrModl)
         {
-            var model = _Mapper.Map<Product>(producrModl);
-            return await _Context.Product_tbl.ContainsAsync(model);
+            var contains = await _Context.Product_tbl.Where(x => x.Product_name == producrModl.Product_name).FirstOrDefaultAsync();
+            if(contains == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

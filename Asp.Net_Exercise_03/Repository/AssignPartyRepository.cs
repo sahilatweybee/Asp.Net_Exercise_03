@@ -75,12 +75,15 @@ namespace Asp.Net_Exercise_03.Repository
 
         public async Task<bool> IsContainAssign(AssignPartyModel assignModl)
         {
-            var model = new AssignParty()
+            var contains = await _Context.Assign_party_tbl.Where(x => x.Party_id == assignModl.Party_id && x.Product_id == assignModl.Product_id).FirstOrDefaultAsync();
+            if(contains == null)
             {
-                Party_id = assignModl.Party_id,
-                Product_id = assignModl.Product_id
-            };
-            return await _Context.Assign_party_tbl.ContainsAsync(model);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

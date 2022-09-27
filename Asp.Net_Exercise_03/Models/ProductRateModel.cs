@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Asp.Net_Exercise_03.Helpers;
 
 namespace Asp.Net_Exercise_03.Models
 {
@@ -15,6 +16,7 @@ namespace Asp.Net_Exercise_03.Models
 
         [ForeignKey("Product_tbl")]
         [Required(ErrorMessage = "* Name of the Product is Required")]
+        [ListCustomValidator("0")]
         public int Product_id { get; set; }
 
         [DataType(DataType.Date)]

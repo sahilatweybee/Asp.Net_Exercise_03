@@ -18,12 +18,13 @@ namespace Asp.Net_Exercise_03.Controllers
         {
             _InvoiceRepo = InvoiceRepo;
         }
-        public async Task<IActionResult> Index(int Party_id = 0, bool Added = false)
+        public async Task<IActionResult> Index(int Party_id = 0, bool Added = false, int isSuccess = 0)
         {
             if(Added == true)
             {
                 ViewBag.Invoices = await _InvoiceRepo.GetInvoice(Party_id);
                 ViewBag.DisPlayTable = true;
+                ViewBag.IsSuccess = isSuccess;
                 ViewBag.GrandTotal = await _InvoiceRepo.CalcGrandTotal(Party_id);
                 return View("Invoice");
             }
@@ -38,8 +39,9 @@ namespace Asp.Net_Exercise_03.Controllers
             if (ModelState.IsValid)
             {
                 int id = await _InvoiceRepo.AddInvoice(InvoiceModl);
+                return RedirectToAction(nameof(Index), new {isSuccess = 1, InvoiceModl.Party_id, Added = true });
             }
-            return RedirectToAction(nameof(Index), new {InvoiceModl.Party_id, Added = true });
+            return View("Invoice");
 
         }
 
