@@ -41,6 +41,8 @@ namespace Asp.Net_Exercise_03.Controllers
                 int id = await _InvoiceRepo.AddInvoice(InvoiceModl);
                 return RedirectToAction(nameof(Index), new {isSuccess = 1, InvoiceModl.Party_id, Added = true });
             }
+            ViewBag.DisPlayTable = false;
+
             return View("Invoice");
 
         }

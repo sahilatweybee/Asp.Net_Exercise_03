@@ -4,7 +4,7 @@
 }
 
 <div class="row w-100 justify-content-end">
-    <a asp-controller="AssignParty" asp-action="AssignPartyAdd" role="button" class="btn text-light bg-success">Add New Party</a>
+    <a asp-controller="AssignParty" asp-action="AssignPartyAdd" role="button" class="btn text-light btn-success"><i class="bi bi-plus-circle"></i> Assign New Party</a>
 </div>
 <table class="mt-3 table table-striped">
     <thead class="bg-primary text-light">
@@ -27,8 +27,8 @@
                        asp-action="AssignPartyEdit" 
                        asp-route-Assign_id="@assign.Assign_id" 
                        asp-route-Party_id="@assign.Party_id" 
-                       asp-route-Product_id="@assign.Product_id" class="btn btn-primary">Edit</a>
-                    <a asp-controller="AssignParty" asp-action="DeleteAssign" asp-route-Assign_id="@assign.Assign_id" role="button" class="btn btn-danger">Delete</a>
+                       asp-route-Product_id="@assign.Product_id" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+                    <a asp-controller="AssignParty" asp-action="DeleteAssign" asp-route-Assign_id="@assign.Assign_id" role="button" class="btn btn-danger" onclick="return confirm('Are you sure You want to delete this Record?')"><i class="bi-trash"></i> Delete</a>
                 </td>
             </tr>
         }

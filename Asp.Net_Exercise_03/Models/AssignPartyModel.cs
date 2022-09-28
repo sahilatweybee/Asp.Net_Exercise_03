@@ -14,11 +14,11 @@ namespace Asp.Net_Exercise_03.Models
         
         public int Assign_id { get; set; }
         [Required(ErrorMessage ="* Party is Required")]
-        [ListCustomValidator("0")]
+        [NonZeroValidator("0")]
         public int Party_id { get; set; }
 
         [Required(ErrorMessage = "* Product is Required")]
-        [ListCustomValidator("0")]
+        [NonZeroValidator("0")]
         public int Product_id { get; set; }
 
         public Party Party_tbl { get; set; }

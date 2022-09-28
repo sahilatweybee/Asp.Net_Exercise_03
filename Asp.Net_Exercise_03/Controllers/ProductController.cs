@@ -39,7 +39,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 if (await _ProductRepo.IsContainsProduct(productModl) == true)
                 {
                     msg = "A record with the same values already exists try something else!!";
-                    return RedirectToAction(nameof(ProductAdd), new { isSiccess = 2, Message = msg });
+                    return RedirectToAction(nameof(ProductAdd), new { isSuccess = 2, Message = msg });
                 }
                 else
                 {

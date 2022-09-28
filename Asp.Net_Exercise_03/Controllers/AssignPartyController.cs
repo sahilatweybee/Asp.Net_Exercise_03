@@ -72,6 +72,7 @@ namespace Asp.Net_Exercise_03.Controllers
         [HttpPost("{assign_id:int}/{party_id}/{product_id}")]
         public async Task<IActionResult> AssignPartyEdit([FromRoute] int assign_id, AssignPartyModel assignModl)
         {
+            ViewData["Title"] = "Edit Assigned Party";
             string msg = "";
             if (ModelState.IsValid)
             {

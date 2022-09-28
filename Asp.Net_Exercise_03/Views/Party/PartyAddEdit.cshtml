@@ -23,13 +23,13 @@ else if(ViewBag.IsSuccess == 2)
     <div class="form-group justify-content-center row">
         @if (ViewData["Title"].ToString() == "Add Party")
         {
-            <input type="submit" asp-controller="Party" asp-action="PartyAdd" value="Add Party" class="btn btn-success m-3" />
+            <button type="submit" asp-controller="Party" asp-action="PartyAdd" class="btn btn-success m-3"><i class="bi bi-plus-circle"></i> Add Party</button>
         }
         else
         {
-            <input type="submit" asp-controller="Party" asp-action="PartyEdit" value="Update Party" class="btn btn-success m-3" />
+            <button type="submit" asp-controller="Party" asp-action="PartyEdit" class="btn btn-success m-3"><i class="bi bi-upload"></i> Update Party</button>
         }
-        <input type="reset" value="Cancel" class="btn btn-light m-3" />
+    <a asp-controller="Party" asp-action="PartyList" role="button" class="btn btn-light m-3" onclick="return confirm('Are you sure You want to Exit?')">Cancel</a>
     </div>
 </form>
 

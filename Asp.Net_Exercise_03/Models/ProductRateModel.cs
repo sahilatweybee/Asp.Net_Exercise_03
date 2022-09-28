@@ -16,7 +16,7 @@ namespace Asp.Net_Exercise_03.Models
 
         [ForeignKey("Product_tbl")]
         [Required(ErrorMessage = "* Name of the Product is Required")]
-        [ListCustomValidator("0")]
+        [NonZeroValidator("0")]
         public int Product_id { get; set; }
 
         [DataType(DataType.Date)]

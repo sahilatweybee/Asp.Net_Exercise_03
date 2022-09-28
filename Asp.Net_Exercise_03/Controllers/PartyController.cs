@@ -73,6 +73,7 @@ namespace Asp.Net_Exercise_03.Controllers
         [HttpPost("Party/PartyList/{party_id:int}/{party_name}")]
         public async Task<IActionResult> PartyEdit([FromRoute] int party_id, PartyModel partyModl)
         {
+            ViewData["Title"] = "Edit Party";
             string msg = "";
             if (ModelState.IsValid)
             {

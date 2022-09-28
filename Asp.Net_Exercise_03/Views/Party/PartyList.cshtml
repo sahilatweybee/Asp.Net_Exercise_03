@@ -4,11 +4,12 @@
 }
 
 <div class="row w-100 justify-content-end">
-    <a asp-controller="Party" asp-action="PartyAdd" role="button" class="btn text-light bg-success">Add New Party</a>
+    <a asp-controller="Party" asp-action="PartyAdd" role="button" class="btn text-light btn-success"><i class="bi bi-plus-circle"></i> Add New Party</a>
 </div>
-<table class="mt-3 table table-striped">
+
+<table class="mt-3 table">
     <thead class="bg-primary text-light">
-        <tr>
+        <tr style="">
             <th scope="col">#</th>
             <th scope="col">Party</th>
             <th scope="col" class="text-center">Actions</th>
@@ -21,11 +22,11 @@
                 <th scope="row">@party.Party_id</th>
                 <td>@party.Party_name</td>
                 <td class="text-center">
-                    <a asp-controller="Party" 
-                       asp-action="PartyEdit" 
-                       asp-route-Party_id="@party.Party_id" 
-                       asp-route-Party_name="@party.Party_name" class="btn btn-primary">Edit</a>
-                    <a asp-controller="Party" asp-action="DeleteParty" asp-route-party_id="@party.Party_id" role="button" class="btn btn-danger">Delete</a>
+                    <a asp-controller="Party"
+                       asp-action="PartyEdit"
+                       asp-route-Party_id="@party.Party_id"
+                       asp-route-Party_name="@party.Party_name" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+                    <a asp-controller="Party" asp-action="DeleteParty" asp-route-party_id="@party.Party_id" role="button" class="btn btn-danger" onclick="return confirm('Are you sure You want to delete this Party?')"><i class="bi-trash"></i> Delete</a>
                 </td>
             </tr>
         }

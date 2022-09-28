@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<ProductRateModel>
-@{ 
+@{
     ViewData["Title"] = "Product Rate List";
 }
 <div class="row w-100 justify-content-end">
-    <a asp-controller="ProductRate" asp-action="ProductRateAdd" role="button" class="btn text-light bg-success">Add New Product Rate</a>
+    <a asp-controller="ProductRate" asp-action="ProductRateAdd" role="button" class="btn text-light btn-success"><i class="bi bi-plus-circle"></i> Add New Product Rate</a>
 </div>
 <table class="mt-3 table table-striped">
     <thead class="bg-primary text-light">
@@ -18,25 +18,25 @@
     <tbody>
         @foreach (var rate in Model)
         {
-        <tr>
-            <th scope="row">@rate.Rate_id</th>
-            <td>@rate.Product_tbl.Product_name</td>
-            <td>@rate.Product_rate</td>
-            <td>@rate.Date_of_Rate.ToShortDateString()</td>
-            <td class="text-center">
-                <a asp-controller="ProductRate" 
-                   asp-action="ProductRateEdit" 
-                   asp-route-Rate_id="@rate.Rate_id" 
-                   asp-route-Product_id="@rate.Product_id" 
-                   asp-route-Product_rate="@rate.Product_rate" 
-                   asp-route-Date_of_Rate="@rate.Date_of_Rate.ToString("d")" 
-                   class="btn btn-primary">Edit</a>
-                
-                <a asp-controller="ProductRate" 
-                   asp-action="DeleteProductRate" 
-                   asp-route-rate_id="@rate.Rate_id" role="button" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <th scope="row">@rate.Rate_id</th>
+                <td>@rate.Product_tbl.Product_name</td>
+                <td>@rate.Product_rate</td>
+                <td>@rate.Date_of_Rate.ToShortDateString()</td>
+                <td class="text-center">
+                    <a asp-controller="ProductRate"
+                       asp-action="ProductRateEdit"
+                       asp-route-Rate_id="@rate.Rate_id"
+                       asp-route-Product_id="@rate.Product_id"
+                       asp-route-Product_rate="@rate.Product_rate"
+                       asp-route-Date_of_Rate="@rate.Date_of_Rate.ToString("d")"
+                       class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+
+                    <a asp-controller="ProductRate"
+                       asp-action="DeleteProductRate"
+                       asp-route-rate_id="@rate.Rate_id" role="button" class="btn btn-danger" onclick="return confirm('Are you sure You want to delete this Product Rate?')"><i class="bi-trash"></i> Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

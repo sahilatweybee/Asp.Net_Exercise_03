@@ -73,6 +73,7 @@ namespace Asp.Net_Exercise_03.Controllers
         [HttpPost("{Rate_id:int}/{Product_id:int}/{Product_rate:int}/{Date_of_Rate}")]
         public async Task<IActionResult> ProductRateEdit([FromRoute] int Rate_id, ProductRateModel rateModl)
         {
+            ViewData["Title"] = "Edit Product Rate";
             string msg = "";
             if (ModelState.IsValid)
             {

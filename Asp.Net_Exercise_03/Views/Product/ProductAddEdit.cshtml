@@ -21,12 +21,12 @@ else if (ViewBag.IsSuccess == 2)
     <div class="form-group justify-content-center row">
         @if (ViewData["Title"].ToString() == "Add Product")
         {
-            <input type="submit" asp-controller="Product" asp-action="ProductAdd" value="Add Product" class="btn btn-success m-3" />
+        <button type="submit" asp-controller="Product" asp-action="ProductAdd" class="btn btn-success m-3"><i class="bi bi-plus-circle"></i> Add Product</button>
         }
         else
         {
-            <input type="submit" asp-controller="Product" asp-action="ProductEdit" value="Update Product" class="btn btn-success m-3" />
+    <button type="submit" asp-controller="Product" asp-action="ProductEdit" class="btn btn-success m-3"><i class="bi bi-upload"></i> Update Product</button>
         }
-        <a asp-controller="Product" asp-action="ProductList" class="btn btn-light m-3" id="cancel-btn">Cancel</a>
+        <a asp-controller="Product" asp-action="ProductList" class="btn btn-light m-3" id="cancel-btn" onclick="return confirm('Are you sure You want to Exit?')">Cancel</a>
     </div>
 </form>

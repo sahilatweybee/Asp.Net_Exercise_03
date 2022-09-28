@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ProductModel>
 @{
-    ViewData["Title"] = "Produc List";
+    ViewData["Title"] = "Product List";
 }
 
 <div class="row w-100 justify-content-end">
-    <a asp-controller="Product" asp-action="ProductAdd" role="button" class="btn text-light bg-success">Add New Party</a>
+    <a asp-controller="Product" asp-action="ProductAdd" role="button" class="btn text-light btn-success"><i class="bi bi-plus-circle"></i> Add New Product</a>
 </div>
 <table class="mt-3 table table-striped">
     <thead class="bg-primary text-light">
@@ -24,8 +24,8 @@
                     <a asp-controller="Product" 
                        asp-action="ProductEdit" 
                        asp-route-Product_id="@product.Product_id" 
-                       asp-route-Product_name="@product.Product_name" class="btn btn-primary">Edit</a>
-                    <a asp-controller="Product" asp-action="DeleteProduct" asp-route-Product_id="@product.Product_id" role="button" class="btn btn-danger">Delete</a>
+                       asp-route-Product_name="@product.Product_name" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+                    <a asp-controller="Product" asp-action="DeleteProduct" asp-route-Product_id="@product.Product_id" role="button" class="btn btn-danger" onclick="return confirm('Are you sure You want to delete this Product?')"><i class="bi-trash"></i> Delete</a>
                 </td>
             </tr>
         }
