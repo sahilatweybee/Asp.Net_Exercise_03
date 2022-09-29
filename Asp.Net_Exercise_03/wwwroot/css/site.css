@@ -13,6 +13,11 @@ for details on configuring this project to bundle and minify static web assets. 
         border-color: #a18724;
     }
 
+.table > thead > tr {
+    background-color: #7d8583;
+    border-color: #7d8583;
+}
+
 .bg-primary {
     background-color: lightslategrey
 }
@@ -20,7 +25,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .btn-primary {
     background-color: #32d765;
     border-color: #3eba66;
-    /*    color: black;*/
+    color: black;
     font-weight: bold;
 }
 
