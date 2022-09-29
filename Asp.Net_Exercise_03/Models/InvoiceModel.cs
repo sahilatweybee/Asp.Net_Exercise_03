@@ -20,6 +20,7 @@ namespace Asp.Net_Exercise_03.Models
         public int Product_id { get; set; }
 
         [Required(ErrorMessage = "* Product Rate is Required")]
+        [NonZeroValidator("0")]
         public int Product_rate { get; set; }
 
         [Required(ErrorMessage = "* Quantity must atleast be 1 unit")]

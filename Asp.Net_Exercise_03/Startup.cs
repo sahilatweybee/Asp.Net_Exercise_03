@@ -29,11 +29,11 @@ namespace Asp.Net_Exercise_03
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
-            services.AddTransient<IPartyRepository, PartyRepository>();
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<IAssignPartyRepository, AssignPartyRepository>();
-            services.AddTransient<IProductRateRepository, ProductRateRepository>();
-            services.AddTransient<IInvoiceRepository, InvoiceRepository>();
+            services.AddScoped<IPartyRepository, PartyRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IAssignPartyRepository, AssignPartyRepository>();
+            services.AddScoped<IProductRateRepository, ProductRateRepository>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddAutoMapper(typeof(Startup));
         }
 

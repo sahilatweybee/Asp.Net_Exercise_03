@@ -1,5 +1,6 @@
 ﻿@model AssignPartyModel
 @inject Asp.Net_Exercise_03.Repository.IPartyRepository _PartyRepo
+@inject Asp.Net_Exercise_03.Repository.IProductRepository _ProductRepo
 @if (ViewBag.IsSuccess == 1)
 {
     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
@@ -23,7 +24,16 @@ else if (ViewBag.IsSuccess == 2)
     <div class="form-group row">
         <label asp-for="Product_id" class="my-2 col-form-label text-right col-sm-2">Product:</label>
         <div class="col-sm-10">
-            <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" class="form-control my-2"></select>
+            @if (ViewData["Title"].ToString() == "Assign Party")
+            {
+                <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" class="form-control my-2"></select>
+            }
+            else
+            {
+        <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" asp-items="(await _ProductRepo.GetAllProductsAsync()).Select(x => new SelectListItem() { Text = x.Product_name, Value = x.Product_id.ToString() })" class="form-control my-2">
+            <option value="0">--Select Product--</option>
+        </select>
+            }
             <span class="text-danger" asp-validation-for="Product_id"></span>
         </div>
     </div>
@@ -37,40 +47,13 @@ else if (ViewBag.IsSuccess == 2)
             <button type="submit" asp-controller="AssignParty" asp-action="AssignPartyEdit" value="" class="btn btn-success m-3"><i class="bi bi-upload"></i> Update Party</button>
         }
         <a asp-controller="AssignParty" asp-action="AssignPartyList" class="btn btn-light m-3" id="cancel-btn" onclick="return confirm('Are you sure You want to Exit?')">Cancel</a>
-</div>
+    </div>
 </form>
-@if (ViewData["Title"].ToString() == "Assign Party")
-{
-    @section Scripts{
-        <script>
-            $(function () {
-                $("#PartySelect-Assign").change(function () {
-                    Id = $("#PartySelect-Assign").val();
 
-                    $.getJSON({
-                        url: "http://localhost:51041/AssignParty/GetProductsForParty",
-                        type: 'GET',
-                        data: { id: Id },
-                        success: function (data) {
-                            $("#ProductSelect-Assign").empty();
-                            $.each(data, function (i, row) {
-                                $("#ProductSelect-Assign").append($("<option></option>").val(row.product_id).html(row.product_name));
-                            });
-                        },
-                        error: function () {
-                            alert("There was an error!!");
-                        }
-                    });
-                });
-            });
-        </script>
-    }
-}
-else
-{
-    @section Scripts{
-        <script>
-            $(document).ready(function () {
+@section Scripts{
+    <script>
+        $(function () {
+            $("#PartySelect-Assign").change(function () {
                 Id = $("#PartySelect-Assign").val();
 
                 $.getJSON({
@@ -88,6 +71,6 @@ else
                     }
                 });
             });
-        </script>
-    }
+        });
+    </script>
 }
