@@ -11,19 +11,18 @@ namespace Asp.Net_Exercise_03.Models
 {
     public class ProductRateModel
     {
-        [Key]
+
         public int Rate_id { get; set; }
 
-        [ForeignKey("Product_tbl")]
-        [Required(ErrorMessage = "* Name of the Product is Required")]
-        [NonZeroValidator("0")]
+        [Range(1, int.MaxValue, ErrorMessage = "* Name of the Product is Required")]
         public int Product_id { get; set; }
 
-        [DataType(DataType.Date)]
-        [Column(TypeName = "Date")]
+
         [Required(ErrorMessage = "* Date of Updated rate is Required")]
         public DateTime Date_of_Rate { get; set; }
-        [Required(ErrorMessage = "* Rate of the product can not be null")]
+
+        [Required(ErrorMessage = "* Product Rate is Required")]
+        [Range(1, int.MaxValue, ErrorMessage = "* Product Rate must atleast be 1")]
         public int Product_rate { get; set; }
         public Product Product_tbl { get; set; }
 

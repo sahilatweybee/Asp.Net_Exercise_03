@@ -11,6 +11,7 @@ else if (ViewBag.IsSuccess == 2)
 }
 
 <form asp-controller="AssignParty"
+      data-ajax="false"
       method="post">
     <div class="form-group row">
         <label asp-for="Party_id" class="my-2 col-form-label text-right col-sm-2">Party:</label>
@@ -27,14 +28,15 @@ else if (ViewBag.IsSuccess == 2)
             @if (ViewData["Title"].ToString() == "Assign Party")
             {
                 <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" class="form-control my-2"></select>
+                <span class="text-danger" asp-validation-for="Product_id"></span>
             }
             else
             {
-        <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" asp-items="(await _ProductRepo.GetAllProductsAsync()).Select(x => new SelectListItem() { Text = x.Product_name, Value = x.Product_id.ToString() })" class="form-control my-2">
-            <option value="0">--Select Product--</option>
-        </select>
+                <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" asp-items="(await _ProductRepo.GetAllProductsAsync()).Select(x => new SelectListItem() { Text = x.Product_name, Value = x.Product_id.ToString() })" class="form-control my-2">
+                    <option value="0">--Select Product--</option>
+                </select>
+                <span class="text-danger" asp-validation-for="Product_id"></span>
             }
-            <span class="text-danger" asp-validation-for="Product_id"></span>
         </div>
     </div>
     <div class="form-group justify-content-center row">

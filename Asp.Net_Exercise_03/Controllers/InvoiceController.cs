@@ -49,12 +49,11 @@ namespace Asp.Net_Exercise_03.Controllers
 
         public async Task<JsonResult> GetProductById(int id)
         {
-            List<ProductModel> products = new List<ProductModel>();
-            products = await _InvoiceRepo.GetProductsByParty(id);
+            List<ProductModel> products = await _InvoiceRepo.GetProductsByParty(id);
             products.Insert(0, new ProductModel()
             {
                 Product_id = 0,
-                Product_name = "--Select Product--"
+                Product_name = "--Select Product--" 
             });
             return Json(products);
         }
