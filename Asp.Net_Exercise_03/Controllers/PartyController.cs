@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Asp.Net_Exercise_03.Controllers
 {
-
     public class PartyController : Controller
     {
         private readonly IPartyRepository _PartyRepo = null;

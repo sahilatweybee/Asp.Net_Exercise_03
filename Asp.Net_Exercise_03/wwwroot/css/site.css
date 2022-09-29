@@ -22,23 +22,27 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color: lightslategrey
 }
 
-.btn-primary {
+.btn-Edit {
     background-color: #32d765;
     border-color: #3eba66;
     color: black;
 }
 
-    .btn-primary:hover {
+    .btn-Edit:hover {
+        background-color: #5f9f70;
+        border-color: #5f9f70;
+    }
+    .btn-Edit:active {
         background-color: #5f9f70;
         border-color: #5f9f70;
     }
 
-.btn-danger {
-    background-color: #e36767;
-    border-color: #e36767;
-    color: black;
-/*    font-weight: bold;*/
-}
+    .btn-danger {
+        background-color: #e36767;
+        border-color: #e36767;
+        color: black;
+        /*    font-weight: bold;*/
+    }
 
     .btn-danger:hover {
         background-color: #c1393c;
