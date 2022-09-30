@@ -11,7 +11,6 @@ else if (ViewBag.IsSuccess == 2)
 }
 
 <form asp-controller="AssignParty"
-      data-ajax="false"
       method="post">
     <div class="form-group row">
         <label asp-for="Party_id" class="my-2 col-form-label text-right col-sm-2">Party:</label>
@@ -57,12 +56,13 @@ else if (ViewBag.IsSuccess == 2)
         $(function () {
             $("#PartySelect-Assign").change(function () {
                 Id = $("#PartySelect-Assign").val();
-
+                debugger;
                 $.getJSON({
                     url: "http://localhost:51041/AssignParty/GetProductsForParty",
                     type: 'GET',
                     data: { id: Id },
                     success: function (data) {
+                        debugger;
                         $("#ProductSelect-Assign").empty();
                         $.each(data, function (i, row) {
                             $("#ProductSelect-Assign").append($("<option></option>").val(row.product_id).html(row.product_name));
