@@ -2,6 +2,7 @@ using Asp.Net_Exercise_03.DataBase;
 using Asp.Net_Exercise_03.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,11 +51,15 @@ namespace Asp.Net_Exercise_03
 
             app.UseAuthorization();
 
+            //----------------------Writting Controller & Action Name to Default Route-------------------//
+            app.UseRewriter(new RewriteOptions().AddRewrite("/", "Party/PartyList", true));
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "Default",
+                    name: "default",
                     pattern: "{controller=Party}/{action=PartyList}/{id?}");
+                
             });
         }
     }
