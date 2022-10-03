@@ -62,9 +62,61 @@ else if (ViewBag.IsSuccess > 2)
 </form>
 
 @section Scripts{
-    <script>
-        $(function () {
-            $("#PartySelect").change(function () {
+    @if (!ViewBag.DisPlayTable)
+    {
+        <script>
+            $(function () {
+                $("#PartySelect").change(function () {
+                    var Id = $("#PartySelect").val();
+
+                    $.getJSON(
+                        {
+                            url: "http://localhost:51041/Invoice/GetProductById",
+                            type: 'GET',
+                            data: { id: Id },
+                            success: function (data) {
+                                $("#ProductSelect").empty();
+                                $.each(data, function (i, row) {
+                                    $("#ProductSelect").append($("<option></option>").val(row.product_id).html(row.product_name));
+                                });
+                            },
+                            error: function () {
+                                alert("There was an Error!!");
+                            }
+                        }
+                    );
+                });
+            });
+            $(function () {
+                $("#ProductSelect").change(function () {
+                    var Id = $("#ProductSelect").val();
+                    $.getJSON(
+                        {
+                            url: "http://localhost:51041/Invoice/GetProductRate",
+                            type: 'GET',
+                            data: { id: Id },
+                            success: function (data) {
+                                $("#ProductRate").val(data);
+                                if (data != 0) {
+                                    $("#ProductRate").prop('readonly', true);
+                                } else {
+                                    $("#ProductRate").prop('readonly', false);
+                                }
+                            },
+                            error: function () {
+                                alert("There was an Error!!");
+                            }
+                        }
+                    );
+                });
+
+            });
+        </script>
+    }
+    else
+    {
+        <script>
+            $(document).ready(function () {
                 var Id = $("#PartySelect").val();
 
                 $.getJSON(
@@ -73,6 +125,7 @@ else if (ViewBag.IsSuccess > 2)
                         type: 'GET',
                         data: { id: Id },
                         success: function (data) {
+                            debugger;
                             $("#ProductSelect").empty();
                             $.each(data, function (i, row) {
                                 $("#ProductSelect").append($("<option></option>").val(row.product_id).html(row.product_name));
@@ -84,30 +137,31 @@ else if (ViewBag.IsSuccess > 2)
                     }
                 );
             });
-        });
-        $(function () {
-            $("#ProductSelect").change(function () {
-                var Id = $("#ProductSelect").val();
-                $.getJSON(
-                    {
-                        url: "http://localhost:51041/Invoice/GetProductRate",
-                        type: 'GET',
-                        data: { id: Id },
-                        success: function (data) {
-                            $("#ProductRate").val(data);
-                            if (data != 0) {
-                                $("#ProductRate").prop('readonly', true);
-                            } else {
-                                $("#ProductRate").prop('readonly', false);
+            $(function () {
+                $("#ProductSelect").change(function () {
+                    var Id = $("#ProductSelect").val();
+                    $.getJSON(
+                        {
+                            url: "http://localhost:51041/Invoice/GetProductRate",
+                            type: 'GET',
+                            data: { id: Id },
+                            success: function (data) {
+                                $("#ProductRate").val(data);
+                                if (data != 0) {
+                                    $("#ProductRate").prop('readonly', true);
+                                } else {
+                                    $("#ProductRate").prop('readonly', false);
+                                }
+                            },
+                            error: function () {
+                                alert("There was an Error!!");
                             }
-                        },
-                        error: function () {
-                            alert("There was an Error!!");
                         }
-                    }
-                );
+                    );
+                });
+
             });
-            
-        });
-    </script>
+        </script>
+    }
+
 }

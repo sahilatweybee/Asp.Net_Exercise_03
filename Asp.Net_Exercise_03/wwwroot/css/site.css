@@ -16,7 +16,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .table{
     line-height: 30px;
 }
-.table td{
+.table td, .table th {
     vertical-align:middle;
 }
 
@@ -27,6 +27,11 @@ for details on configuring this project to bundle and minify static web assets. 
 
     .table > tbody > tr:nth-child(even) {
         background-color: rgba(222, 221, 220, 1);
+        border-color: #e3e2e1;
+    }
+
+    .table > tbody > tr:nth-child(odd) {
+        background-color: rgba(252, 251, 250, 1);
         border-color: #e3e2e1;
     }
 

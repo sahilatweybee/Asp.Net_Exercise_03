@@ -25,7 +25,8 @@
                     <a asp-controller="Party"
                        asp-action="PartyEdit"
                        asp-route-Party_id="@party.Party_id"
-                       asp-route-Party_name="@party.Party_name" class="btn btn-Edit"><i class="bi bi-pencil-square"></i> Edit</a>
+                       asp-route-Party_name="@party.Party_name" 
+                       class="btn btn-Edit"><i class="bi bi-pencil-square"></i> Edit</a>
                     <a asp-controller="Party" asp-action="DeleteParty" asp-route-party_id="@party.Party_id" role="button" class="btn btn-danger" onclick="return confirm('Are you sure You want to delete this Party?')"><i class="bi-trash"></i> Delete</a>
                 </td>
             </tr>
