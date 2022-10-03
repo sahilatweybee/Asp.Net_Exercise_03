@@ -5,11 +5,11 @@
         var isActive = str.Equals(controller);
         if (isActive)
         {
-            return "nav-item active";
+            return "nav-link active";
         }
         else
         {
-            return "nav-item";
+            return "nav-link";
         }
     }
 }
@@ -19,13 +19,13 @@
         <div class="container-fluid w-75">
             <div class="navbar navbar-expand-sm" id="navbarNavAltMarkup">
                 <a class="navbar-brand" asp-controller="Party" asp-action="PartyList">Invoice Module</a>
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="@ActivePg("Party")"><a class="nav-link" asp-controller="Party" asp-action="PartyList">Party</a></li>
-                    <li class="@ActivePg("Product")"><a class="nav-link" asp-controller="Product" asp-action="ProductList">Product</a></li>
-                    <li class="@ActivePg("AssignParty")"><a class="nav-link" asp-controller="AssignParty" asp-action="AssignPartyList">Assign Party</a></li>
-                    <li class="@ActivePg("ProductRate")"><a class="nav-link" asp-controller="ProductRate" asp-action="ProductRateList">Product Rate</a></li>
-                    <li class="@ActivePg("Invoice")"><a class="nav-link" asp-controller="Invoice" asp-action="Index">Invoice</a></li>
-                </ul>
+                <div class="navbar-nav flex-grow-1">
+                    <a class="@ActivePg("Party")" asp-controller="Party" asp-action="PartyList">Party</a>
+                    <a class="@ActivePg("Product")" asp-controller="Product" asp-action="ProductList">Product</a>
+                    <a class="@ActivePg("AssignParty")" asp-controller="AssignParty" asp-action="AssignPartyList">Assign Party</a>
+                    <a class="@ActivePg("ProductRate")" asp-controller="ProductRate" asp-action="ProductRateList">Product Rate</a>
+                    <a class="@ActivePg("Invoice")" asp-controller="Invoice" asp-action="Index">Invoice</a>
+                </div>
             </div>
         </div>
     </nav>

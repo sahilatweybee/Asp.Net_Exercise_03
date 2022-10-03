@@ -1,9 +1,6 @@
 ﻿using Asp.Net_Exercise_03.Models;
 using Asp.Net_Exercise_03.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Asp.Net_Exercise_03.Controllers
@@ -41,7 +38,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 if ( contain == true)
                 {
                     msg = "A record with the same values already exists try something else!!";
-                    return RedirectToAction(nameof(PartyAdd), new { isSuccess = 2, Message = msg });
+                    return RedirectToAction(nameof(PartyAdd), new { isSuccess = 2, Message = msg });                             
                 }
                 else
                 {

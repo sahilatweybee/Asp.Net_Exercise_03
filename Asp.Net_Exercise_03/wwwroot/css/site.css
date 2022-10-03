@@ -13,10 +13,22 @@ for details on configuring this project to bundle and minify static web assets. 
         border-color: #a18724;
     }
 
-.table > thead > tr {
-    background-color: #7d8583;
-    border-color: #7d8583;
+.table{
+    line-height: 30px;
 }
+.table td{
+    vertical-align:middle;
+}
+
+.table > thead > tr {
+    background-color: #878787;
+    border-color: #878787;
+}
+
+    .table > tbody > tr:nth-child(even) {
+        background-color: rgba(222, 221, 220, 1);
+        border-color: #e3e2e1;
+    }
 
 .bg-primary {
     background-color: lightslategrey
@@ -31,10 +43,12 @@ for details on configuring this project to bundle and minify static web assets. 
     .btn-Edit:hover {
         background-color: #5f9f70;
         border-color: #5f9f70;
+        color: white;
     }
     .btn-Edit:active {
         background-color: #5f9f70;
         border-color: #5f9f70;
+        color: white;
     }
 
     .btn-danger {
