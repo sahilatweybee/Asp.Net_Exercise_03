@@ -1,14 +1,5 @@
 ﻿@model ProductModel
 
-@if (ViewBag.IsSuccess == 1)
-{
-    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
-}
-else if (ViewBag.IsSuccess == 2)
-{
-    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
-}
-
 <form asp-controller="Product"
       method="post">
     <div class="form-group row">

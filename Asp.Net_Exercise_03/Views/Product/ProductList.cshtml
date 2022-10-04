@@ -25,7 +25,7 @@
                        asp-action="ProductEdit" 
                        asp-route-Product_id="@product.Product_id" 
                        asp-route-Product_name="@product.Product_name" class="btn btn-Edit"><i class="bi bi-pencil-square"></i> Edit</a>
-                    <a asp-controller="Product" asp-action="DeleteProduct" asp-route-Product_id="@product.Product_id" role="button" class="btn btn-danger" onclick="return confirm('Are you sure You want to delete this Product?')"><i class="bi-trash"></i> Delete</a>
+                    <a asp-controller="Product" asp-action="DeleteProduct" asp-route-Product_id="@product.Product_id" role="button" class="btn btn-danger" onclick="return confirm('Are you sure You want to delete this Product?\n If There is a Rate assigned to it that and its assigned parties will also be deleted.')"><i class="bi-trash"></i> Delete</a>
                 </td>
             </tr>
         }

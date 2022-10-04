@@ -1,14 +1,6 @@
 ﻿@model AssignPartyModel
 @inject Asp.Net_Exercise_03.Repository.IPartyRepository _PartyRepo
 @inject Asp.Net_Exercise_03.Repository.IProductRepository _ProductRepo
-@if (ViewBag.IsSuccess == 1)
-{
-    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
-}
-else if (ViewBag.IsSuccess == 2)
-{
-    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
-}
 
 <form asp-controller="AssignParty"
       method="post">

@@ -13,8 +13,10 @@ namespace Asp.Net_Exercise_03.Controllers
             _PartyRepo = PartyRepo;
         }
         [HttpGet]
-        public async Task<IActionResult> PartyList()
+        public async Task<IActionResult> PartyList(string message = "", int isSuccess = 0)
         {
+            ViewBag.message = message;
+            ViewBag.IsSuccess = isSuccess;
             var parties = await _PartyRepo.GetAllPartiesAsync();
             return View(parties);
         }
@@ -51,10 +53,11 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [Route("Party/PartyList/{party_id:int}")]
-        public async Task<IActionResult> DeleteParty([FromRoute] int party_id, string party_name)
+        public async Task<IActionResult> DeleteParty([FromRoute] int party_id)
         {
             await _PartyRepo.DeletePartyAsync(party_id);
-            return RedirectToAction(nameof(PartyList));
+            string msg = $"Party With Id = {party_id} Deleted SuccessFully.";
+            return RedirectToAction(nameof(PartyList), new { isSuccess = 1, message = msg });
         }
 
         [HttpGet("Party/PartyList/{party_id:int}/{party_name}")]

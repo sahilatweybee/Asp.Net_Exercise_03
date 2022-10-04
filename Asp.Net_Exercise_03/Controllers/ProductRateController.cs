@@ -17,8 +17,10 @@ namespace Asp.Net_Exercise_03.Controllers
         {
             _RateRepository = RateRepo;
         }
-        public async Task<IActionResult> ProductRateList()
+        public async Task<IActionResult> ProductRateList(string message= "", int isSuccess = 0)
         {
+            ViewBag.message = message;
+            ViewBag.IsSuccess = isSuccess;
             var Rates = await _RateRepository.GetAllProductRatesAsync();
             return View(Rates);
         }
@@ -49,7 +51,7 @@ namespace Asp.Net_Exercise_03.Controllers
                     msg = "Rate added successfully.";
                     return RedirectToAction(nameof(ProductRateAdd), new { isSuccess = 1, message = msg });
                 }
-                
+
             }
             return View("ProductRateAddEdit", rateModl);
         }
@@ -58,11 +60,12 @@ namespace Asp.Net_Exercise_03.Controllers
         public async Task<IActionResult> DeleteProductRate([FromRoute] int Rate_id)
         {
             await _RateRepository.DeleteProductRateAsync(Rate_id);
-            return RedirectToAction(nameof(ProductRateList));
+            string msg = $"Record With Id = {Rate_id} Deleted SuccessFully.";
+            return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, message = msg });
         }
 
         [HttpGet("{Rate_id:int}/{Product_id:int}/{Product_rate:int}/{Date_of_Rate}")]
-        public ViewResult ProductRateEdit([FromRoute] ProductRateModel rateModl ,string Message = "", int isSuccess = 0)
+        public ViewResult ProductRateEdit([FromRoute] ProductRateModel rateModl, string Message = "", int isSuccess = 0)
         {
             ViewBag.message = Message;
             ViewBag.IsSuccess = isSuccess;
@@ -77,18 +80,10 @@ namespace Asp.Net_Exercise_03.Controllers
             string msg = "";
             if (ModelState.IsValid)
             {
-                if (await _RateRepository.IsContainsRate(rateModl.Product_id) == true)
-                {
-                    msg = "Rate already exist for this product.";
-                    return RedirectToAction(nameof(ProductRateList), new { isSuccess = 2, Message = msg });
-                }
-                else
-                {
-                    await _RateRepository.EditProductRateAsync(rateModl, Rate_id);
-                    msg = "Rate added successfully.";
-                    return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, Message = msg });
-                }
-                
+                await _RateRepository.EditProductRateAsync(rateModl, rateModl.Rate_id);
+                msg = "Rate added successfully.";
+                return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, Message = msg });
+
             }
             return View("ProductRateAddEdit", rateModl);
             // new { IsSuccess = true, Message = msg}

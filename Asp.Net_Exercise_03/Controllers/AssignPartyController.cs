@@ -16,8 +16,10 @@ namespace Asp.Net_Exercise_03.Controllers
         {
             _AssignPartyRepo = ProductRepo;
         }
-        public async Task<IActionResult> AssignPartyList()
+        public async Task<IActionResult> AssignPartyList(string message = "", int isSuccess = 0)
         {
+            ViewBag.message = message;
+            ViewBag.IsSuccess = isSuccess;
             var Assigns = await _AssignPartyRepo.GetAllAssignPartiesAsync();
             return View(Assigns);
         }
@@ -57,7 +59,8 @@ namespace Asp.Net_Exercise_03.Controllers
         public async Task<IActionResult> DeleteAssign([FromRoute] int assign_id)
         {
             await _AssignPartyRepo.DeleteAssignAsync(assign_id);
-            return RedirectToAction(nameof(AssignPartyList));
+            string msg = $"Record With Id = {assign_id} Deleted SuccessFully.";
+            return RedirectToAction(nameof(AssignPartyList), new { isSuccess = 1, message = msg });
         }
 
         [HttpGet("{assign_id:int}/{party_id:int}/{product_id:int}")]

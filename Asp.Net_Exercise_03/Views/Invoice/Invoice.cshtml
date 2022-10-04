@@ -3,14 +3,6 @@
 @{
     ViewData["Title"] = "Invoice";
 }
-@if (ViewBag.IsSuccess == 2)
-{
-    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">@ViewBag.message</div>
-}
-else if (ViewBag.IsSuccess > 2)
-{
-    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">Sorry for the Inconvience. There was an Error!!</div>
-}
 
 <form asp-controller="Invoice"
       data-ajax="false"

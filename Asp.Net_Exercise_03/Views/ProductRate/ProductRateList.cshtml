@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Product Rate List";
 }
+
 <div class="row w-100 justify-content-end">
     <a asp-controller="ProductRate" asp-action="ProductRateAdd" role="button" class="btn text-light btn-success"><i class="bi bi-plus-circle"></i> Add New Product Rate</a>
 </div>
@@ -29,7 +30,7 @@
                        asp-route-Rate_id="@rate.Rate_id"
                        asp-route-Product_id="@rate.Product_id"
                        asp-route-Product_rate="@rate.Product_rate"
-                       asp-route-Date_of_Rate="@rate.Date_of_Rate.ToString("d")"
+                       asp-route-Date_of_Rate="@rate.Date_of_Rate.ToString("yyyy-MM-dd")"
                        class="btn btn-Edit"><i class="bi bi-pencil-square"></i> Edit</a>
 
                     <a asp-controller="ProductRate"

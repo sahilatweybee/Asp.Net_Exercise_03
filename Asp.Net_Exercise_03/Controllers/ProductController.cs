@@ -16,8 +16,10 @@ namespace Asp.Net_Exercise_03.Controllers
         {
             _ProductRepo = ProductRepo;
         }
-        public async Task<IActionResult> ProductList()
+        public async Task<IActionResult> ProductList(string message = "", int isSuccess = 0)
         {
+            ViewBag.message = message;
+            ViewBag.IsSuccess = isSuccess;
             var products = await _ProductRepo.GetAllProductsAsync();
             return View(products);
         }
@@ -56,7 +58,8 @@ namespace Asp.Net_Exercise_03.Controllers
         public async Task<IActionResult> Deleteproduct([FromRoute] int product_id)
         {
             await _ProductRepo.DeleteProductAsync(product_id);
-            return RedirectToAction(nameof(ProductList));
+            string msg = $"Product With Id = {product_id} Deleted SuccessFully.";
+            return RedirectToAction(nameof(ProductList), new { isSuccess = 1, message = msg });
         }
 
         [HttpGet("{product_id:int}/{product_name}")]
