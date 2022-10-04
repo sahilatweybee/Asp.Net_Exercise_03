@@ -10,6 +10,7 @@ namespace Asp.Net_Exercise_03.Models
         [Range(1, int.MaxValue, ErrorMessage = "* Name of the Party is Required")]
         public int Party_id { get; set; }
 
+        [Required(ErrorMessage = "* Name of the Product is Required")]
         [Range(1, int.MaxValue, ErrorMessage = "* Name of the Product is Required")]
         public int Product_id { get; set; }
 

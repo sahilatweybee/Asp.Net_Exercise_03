@@ -15,7 +15,7 @@ else if (ViewBag.IsSuccess == 2)
     <div class="form-group row">
         <label asp-for="Party_id" class="my-2 col-form-label text-right col-sm-2">Party:</label>
         <div class="col-sm-10">
-            <select id="PartySelect-Assign" asp-for="Party_id" name="party_id" class="form-control my-2" asp-items="(await _PartyRepo.GetAllPartiesAsync()).Select(x => new SelectListItem() { Text = x.Party_name, Value = x.Party_id.ToString() })">
+            <select id="PartySelect-Assign" asp-for="Party_id" name="Party_id" class="form-control my-2" asp-items="(await _PartyRepo.GetAllPartiesAsync()).Select(x => new SelectListItem() { Text = x.Party_name, Value = x.Party_id.ToString() })">
                 <option value="0">--Select Party--</option>
             </select>
             <span class="text-danger" asp-validation-for="Party_id"></span>
@@ -26,12 +26,12 @@ else if (ViewBag.IsSuccess == 2)
         <div class="col-sm-10">
             @if (ViewData["Title"].ToString() == "Assign Party")
             {
-                <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" class="form-control my-2"></select>
+                <select id="ProductSelect-Assign" asp-for="Product_id" name="Product_id" class="form-control my-2"></select>
                 <span class="text-danger" asp-validation-for="Product_id"></span>
             }
             else
             {
-                <select id="ProductSelect-Assign" asp-for="Product_id" name="product_id" asp-items="(await _ProductRepo.GetAllProductsAsync()).Select(x => new SelectListItem() { Text = x.Product_name, Value = x.Product_id.ToString() })" class="form-control my-2">
+                <select id="ProductSelect-Assign" asp-for="Product_id" name="Product_id" asp-items="(await _ProductRepo.GetAllProductsAsync()).Select(x => new SelectListItem() { Text = x.Product_name, Value = x.Product_id.ToString() })" class="form-control my-2">
                     <option value="0">--Select Product--</option>
                 </select>
                 <span class="text-danger" asp-validation-for="Product_id"></span>

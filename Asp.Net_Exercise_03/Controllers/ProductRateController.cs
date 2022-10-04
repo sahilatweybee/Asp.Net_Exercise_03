@@ -51,7 +51,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 }
                 
             }
-            return View("ProductRateAddEdit");
+            return View("ProductRateAddEdit", rateModl);
         }
 
         [Route("{Rate_id:int}")]
@@ -62,12 +62,12 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpGet("{Rate_id:int}/{Product_id:int}/{Product_rate:int}/{Date_of_Rate}")]
-        public ViewResult ProductRateEdit([FromRoute] int Rate_id, int Product_id, int Product_rate, string Date_of_Rate, string Message = "", int isSuccess = 0)
+        public ViewResult ProductRateEdit([FromRoute] ProductRateModel rateModl ,string Message = "", int isSuccess = 0)
         {
             ViewBag.message = Message;
             ViewBag.IsSuccess = isSuccess;
             ViewData["Title"] = "Edit Product Rate";
-            return View("ProductRateAddEdit");
+            return View("ProductRateAddEdit", rateModl);
         }
 
         [HttpPost("{Rate_id:int}/{Product_id:int}/{Product_rate:int}/{Date_of_Rate}")]
@@ -90,7 +90,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 }
                 
             }
-            return View("ProductRateAddEdit");
+            return View("ProductRateAddEdit", rateModl);
             // new { IsSuccess = true, Message = msg}
         }
     }
