@@ -48,11 +48,11 @@ namespace Asp.Net_Exercise_03.Repository
             await _Context.SaveChangesAsync();
         }
 
-        public async Task EditAssignPartyAsync(AssignPartyModel assignPartyModl, int id)
+        public async Task EditAssignPartyAsync(AssignPartyModel assignPartyModl)
         {
             var assign = new AssignParty()
             {
-                Assign_id = id,
+                Assign_id = assignPartyModl.Assign_id,
                 Party_id = assignPartyModl.Party_id,
                 Product_id = assignPartyModl.Product_id
             };

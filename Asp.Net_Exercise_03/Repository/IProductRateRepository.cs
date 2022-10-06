@@ -9,7 +9,7 @@ namespace Asp.Net_Exercise_03.Repository
     {
         Task<int> AddProductRate(ProductRateModel rateModl);
         Task DeleteProductRateAsync(int id);
-        Task EditProductRateAsync(ProductRateModel rateModl, int id);
+        Task EditProductRateAsync(ProductRateModel rateModl);
         Task<List<ProductRateModel>> GetAllProductRatesAsync();
         Task<bool> IsContainsRate(int id);
     }

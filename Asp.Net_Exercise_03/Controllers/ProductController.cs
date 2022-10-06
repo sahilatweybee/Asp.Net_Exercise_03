@@ -72,7 +72,7 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpPost("{product_id:int}/{product_name}")]
-        public async Task<IActionResult> ProductEdit([FromRoute] int product_id, ProductModel productModl)
+        public async Task<IActionResult> ProductEdit([FromRoute] ProductModel productModl)
         {
             ViewData["Title"] = "Edit Product";
             string msg = "";
@@ -85,7 +85,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 }
                 else
                 {
-                    await _ProductRepo.EditProductAsync(productModl, product_id);
+                    await _ProductRepo.EditProductAsync(productModl);
                     msg = "Product Updated Successfully.";
                     return RedirectToAction(nameof(ProductEdit), new { isSuccess = 1, Message = msg });
                 }

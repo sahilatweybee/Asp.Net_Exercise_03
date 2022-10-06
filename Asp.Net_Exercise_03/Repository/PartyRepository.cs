@@ -46,11 +46,11 @@ namespace Asp.Net_Exercise_03.Repository
             await _Context.SaveChangesAsync();
         }
 
-        public async Task EditPartyAsync(PartyModel partyModl, int id)
+        public async Task EditPartyAsync(PartyModel partyModl)
         {
             var party = new Party()
             {
-                Party_id = id,
+                Party_id = partyModl.Party_id,
                 Party_name = partyModl.Party_name
             };
             _Context.Party_tbl.Update(party);

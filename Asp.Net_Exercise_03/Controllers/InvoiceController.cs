@@ -39,7 +39,7 @@ namespace Asp.Net_Exercise_03.Controllers
             if (ModelState.IsValid)
             {
                 int id = await _InvoiceRepo.AddInvoice(InvoiceModl);
-                return RedirectToAction(nameof(Index), new {isSuccess = 1, InvoiceModl.Party_id, Added = true });
+                return RedirectToAction(nameof(Index), new {isSuccess = 0, InvoiceModl.Party_id, Added = true });
             }
             ViewBag.DisPlayTable = false;
 

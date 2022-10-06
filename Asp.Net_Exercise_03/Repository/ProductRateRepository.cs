@@ -50,11 +50,11 @@ namespace Asp.Net_Exercise_03.Repository
             await _Context.SaveChangesAsync();
         }
 
-        public async Task EditProductRateAsync(ProductRateModel rateModl, int id)
+        public async Task EditProductRateAsync(ProductRateModel rateModl)
         {
             var productRate = new ProductRate()
             {
-                Rate_id = id,
+                Rate_id = rateModl.Rate_id,
                 Product_id = rateModl.Product_id,
                 Product_rate = rateModl.Product_rate,
                 Date_of_Rate = DateTime.Now

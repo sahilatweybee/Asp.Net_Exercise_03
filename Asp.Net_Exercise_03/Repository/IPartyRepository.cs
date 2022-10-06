@@ -8,7 +8,7 @@ namespace Asp.Net_Exercise_03.Repository
     {
         Task<int> AddPartyAsync(PartyModel partyModl);
         Task DeletePartyAsync(int id);
-        Task EditPartyAsync(PartyModel partyModl, int id);
+        Task EditPartyAsync(PartyModel partyModl);
         Task<List<PartyModel>> GetAllPartiesAsync();
         Task<bool> IsContainsParty(PartyModel partyModl);
     }

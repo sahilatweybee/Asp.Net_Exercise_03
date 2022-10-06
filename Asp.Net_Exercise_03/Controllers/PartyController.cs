@@ -61,7 +61,7 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpGet("Party/PartyList/{party_id:int}/{party_name}")]
-        public ViewResult PartyEdit([FromRoute] int party_id, string party_name, int isSuccess = 0, string Message = "")
+        public ViewResult PartyEdit([FromRoute] PartyModel PartyModl, int isSuccess = 0, string Message = "")
         {
             ViewData["Title"] = "Edit Party";
             ViewBag.message = Message;
@@ -70,7 +70,7 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpPost("Party/PartyList/{party_id:int}/{party_name}")]
-        public async Task<IActionResult> PartyEdit([FromRoute] int party_id, PartyModel partyModl)
+        public async Task<IActionResult> PartyEdit([FromRoute] PartyModel partyModl)
         {
             ViewData["Title"] = "Edit Party";
             string msg = "";
@@ -83,7 +83,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 }
                 else
                 {
-                    await _PartyRepo.EditPartyAsync(partyModl, party_id);
+                    await _PartyRepo.EditPartyAsync(partyModl);
                     msg = "record Updated Successfully.";
                     return RedirectToAction(nameof(PartyEdit), new { isSuccess = 1, Message = msg });
                 }

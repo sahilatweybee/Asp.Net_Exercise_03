@@ -16,7 +16,7 @@ namespace Asp.Net_Exercise_03.Models
         [Range(1, int.MaxValue, ErrorMessage = "* Product Rate must atleast be 1")]
         public int Product_rate { get; set; }
 
-        [DisplayFormat(DataFormatString = "{dd MMM yyyy}")]
+        //[DisplayFormat(DataFormatString = "{dd MM yyyy}")]
         [Required(ErrorMessage = "* Date of Updated rate is Required")]
         public DateTime Date_of_Rate { get; set; }
 

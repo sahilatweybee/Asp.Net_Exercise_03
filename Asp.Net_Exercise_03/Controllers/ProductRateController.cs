@@ -64,7 +64,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet("{Rate_id:int}/{Product_id:int}/{Product_rate:int}/{Date_of_Rate}")]
+        [HttpGet("{Rate_id:int}/{Product_id:int}/{Product_rate:int}")]
         public ViewResult ProductRateEdit([FromRoute] ProductRateModel rateModl, string Message = "", int isSuccess = 0)
         {
             ViewBag.message = Message;
@@ -73,14 +73,14 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("ProductRateAddEdit", rateModl);
         }
 
-        [HttpPost("{Rate_id:int}/{Product_id:int}/{Product_rate:int}/{Date_of_Rate}")]
-        public async Task<IActionResult> ProductRateEdit([FromRoute] int Rate_id, ProductRateModel rateModl)
+        [HttpPost("{Rate_id:int}/{Product_id:int}/{Product_rate:int}")]
+        public async Task<IActionResult> ProductRateEdit([FromRoute] ProductRateModel rateModl)
         {
             ViewData["Title"] = "Edit Product Rate";
             string msg = "";
             if (ModelState.IsValid)
             {
-                await _RateRepository.EditProductRateAsync(rateModl, rateModl.Rate_id);
+                await _RateRepository.EditProductRateAsync(rateModl);
                 msg = "Rate added successfully.";
                 return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, Message = msg });
 

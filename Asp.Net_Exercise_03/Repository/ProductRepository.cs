@@ -46,11 +46,11 @@ namespace Asp.Net_Exercise_03.Repository
             await _Context.SaveChangesAsync();
         }
 
-        public async Task EditProductAsync(ProductModel productModl, int id)
+        public async Task EditProductAsync(ProductModel productModl)
         {
             var product = new Product()
             {
-                Product_id = id,
+                Product_id = productModl.Product_id,
                 Product_name = productModl.Product_name            };
             _Context.Product_tbl.Update(product);
             await _Context.SaveChangesAsync();
