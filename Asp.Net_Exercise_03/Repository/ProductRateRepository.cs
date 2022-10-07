@@ -1,7 +1,6 @@
 ﻿using Asp.Net_Exercise_03.DataBase;
 using Asp.Net_Exercise_03.Models;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

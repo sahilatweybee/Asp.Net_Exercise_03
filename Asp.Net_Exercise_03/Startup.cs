@@ -2,7 +2,6 @@ using Asp.Net_Exercise_03.DataBase;
 using Asp.Net_Exercise_03.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -65,7 +64,7 @@ namespace Asp.Net_Exercise_03
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Party}/{action=PartyList}/{id?}");
-                
+
             });
         }
     }

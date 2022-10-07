@@ -2,7 +2,6 @@
 using Asp.Net_Exercise_03.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,10 +35,10 @@ namespace Asp.Net_Exercise_03.Repository
 
         public async Task<List<InvoiceModel>> GetInvoice(int Party_id)
         {
-            var invoices =await _Context.Invoice_tbl
+            var invoices = await _Context.Invoice_tbl
                 .Where(x => x.Party_id == Party_id)
-                .Select(x => new InvoiceModel() 
-                { 
+                .Select(x => new InvoiceModel()
+                {
                     Invoice_id = x.Invoice_id,
                     Party_id = x.Party_id,
                     Product_id = x.Product_id,

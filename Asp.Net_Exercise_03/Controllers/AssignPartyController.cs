@@ -1,9 +1,7 @@
 ﻿using Asp.Net_Exercise_03.Models;
 using Asp.Net_Exercise_03.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Asp.Net_Exercise_03.Controllers
@@ -90,7 +88,7 @@ namespace Asp.Net_Exercise_03.Controllers
                     msg = "Assign Party Updated Successfully.";
                     return RedirectToAction(nameof(AssignPartyEdit), new { isSuccess = 1, Message = msg });
                 }
-            
+
             }
             return View("AssignPartyAddEdit");
         }

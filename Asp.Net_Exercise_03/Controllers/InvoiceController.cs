@@ -1,11 +1,7 @@
 ﻿using Asp.Net_Exercise_03.Models;
 using Asp.Net_Exercise_03.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Asp.Net_Exercise_03.Controllers
@@ -20,7 +16,7 @@ namespace Asp.Net_Exercise_03.Controllers
         }
         public async Task<IActionResult> Index(int Party_id = 0, bool Added = false, int isSuccess = 0)
         {
-            if(Added == true)
+            if (Added == true)
             {
                 ViewBag.Invoices = await _InvoiceRepo.GetInvoice(Party_id);
                 ViewBag.DisPlayTable = true;
@@ -32,14 +28,14 @@ namespace Asp.Net_Exercise_03.Controllers
             ViewBag.DisPlayTable = false;
             return View("Invoice");
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> AddInvoice(InvoiceModel InvoiceModl)
         {
             if (ModelState.IsValid)
             {
                 int id = await _InvoiceRepo.AddInvoice(InvoiceModl);
-                return RedirectToAction(nameof(Index), new {isSuccess = 0, InvoiceModl.Party_id, Added = true });
+                return RedirectToAction(nameof(Index), new { isSuccess = 0, InvoiceModl.Party_id, Added = true });
             }
             ViewBag.DisPlayTable = false;
 
@@ -53,7 +49,7 @@ namespace Asp.Net_Exercise_03.Controllers
             products.Insert(0, new ProductModel()
             {
                 Product_id = 0,
-                Product_name = "--Select Product--" 
+                Product_name = "--Select Product--"
             });
             return Json(products);
         }

@@ -6,7 +6,7 @@ namespace Asp.Net_Exercise_03.Models
 {
     public class AssignPartyModel
     {
-        
+
         public int Assign_id { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "* Name of the Party is Required")]

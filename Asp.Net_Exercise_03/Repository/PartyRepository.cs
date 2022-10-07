@@ -60,7 +60,7 @@ namespace Asp.Net_Exercise_03.Repository
         public async Task<bool> IsContainsParty(PartyModel partyModl)
         {
             var model = await _Context.Party_tbl.Where(x => x.Party_name == partyModl.Party_name).FirstOrDefaultAsync();
-            if(model== null)
+            if (model == null)
             {
                 return false;
             }

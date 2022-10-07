@@ -1,9 +1,6 @@
 ﻿using Asp.Net_Exercise_03.Models;
 using Asp.Net_Exercise_03.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Asp.Net_Exercise_03.Controllers
@@ -24,7 +21,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return View(products);
         }
         [HttpGet]
-        public ViewResult ProductAdd(int isSuccess = 0 ,string Message = "")
+        public ViewResult ProductAdd(int isSuccess = 0, string Message = "")
         {
             ViewBag.message = Message;
             ViewBag.IsSuccess = isSuccess;
@@ -49,7 +46,7 @@ namespace Asp.Net_Exercise_03.Controllers
                     msg = "Product Addded successfully";
                     return RedirectToAction(nameof(ProductAdd), new { isSuccess = 1, Message = msg });
                 }
-            
+
             }
             return View("ProductAddEdit");
         }
@@ -63,7 +60,7 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpGet("{product_id:int}/{product_name}")]
-        public ViewResult ProductEdit([FromRoute] int product_id, string product_name,int isSuccess = 0 ,string Message = "")
+        public ViewResult ProductEdit([FromRoute] int product_id, string product_name, int isSuccess = 0, string Message = "")
         {
             ViewBag.message = Message;
             ViewBag.IsSuccess = isSuccess;
@@ -89,7 +86,7 @@ namespace Asp.Net_Exercise_03.Controllers
                     msg = "Product Updated Successfully.";
                     return RedirectToAction(nameof(ProductEdit), new { isSuccess = 1, Message = msg });
                 }
-                
+
             }
             return View("productAddEdit");
         }

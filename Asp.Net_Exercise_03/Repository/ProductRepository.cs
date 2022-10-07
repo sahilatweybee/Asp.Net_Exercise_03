@@ -51,7 +51,8 @@ namespace Asp.Net_Exercise_03.Repository
             var product = new Product()
             {
                 Product_id = productModl.Product_id,
-                Product_name = productModl.Product_name            };
+                Product_name = productModl.Product_name
+            };
             _Context.Product_tbl.Update(product);
             await _Context.SaveChangesAsync();
         }
@@ -59,7 +60,7 @@ namespace Asp.Net_Exercise_03.Repository
         public async Task<bool> IsContainsProduct(ProductModel producrModl)
         {
             var contains = await _Context.Product_tbl.Where(x => x.Product_name == producrModl.Product_name).FirstOrDefaultAsync();
-            if(contains == null)
+            if (contains == null)
             {
                 return false;
             }

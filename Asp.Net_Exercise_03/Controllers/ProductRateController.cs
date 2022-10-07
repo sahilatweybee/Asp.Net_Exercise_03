@@ -1,10 +1,6 @@
-﻿using Asp.Net_Exercise_03.DataBase;
-using Asp.Net_Exercise_03.Models;
+﻿using Asp.Net_Exercise_03.Models;
 using Asp.Net_Exercise_03.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Asp.Net_Exercise_03.Controllers
@@ -17,7 +13,7 @@ namespace Asp.Net_Exercise_03.Controllers
         {
             _RateRepository = RateRepo;
         }
-        public async Task<IActionResult> ProductRateList(string message= "", int isSuccess = 0)
+        public async Task<IActionResult> ProductRateList(string message = "", int isSuccess = 0)
         {
             ViewBag.message = message;
             ViewBag.IsSuccess = isSuccess;

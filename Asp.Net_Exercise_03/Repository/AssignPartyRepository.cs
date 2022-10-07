@@ -2,7 +2,6 @@
 using Asp.Net_Exercise_03.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +20,7 @@ namespace Asp.Net_Exercise_03.Repository
 
         public async Task<List<AssignPartyModel>> GetAllAssignPartiesAsync()
         {
-            var parties = await _Context.Assign_party_tbl.Include(x => x.Party_tbl).Include(x  => x.Product_tbl).ToListAsync();
+            var parties = await _Context.Assign_party_tbl.Include(x => x.Party_tbl).Include(x => x.Product_tbl).ToListAsync();
             return _Mapper.Map<List<AssignPartyModel>>(parties);
         }
 
@@ -29,7 +28,7 @@ namespace Asp.Net_Exercise_03.Repository
         {
             var assignParty = new AssignParty()
             {
-                Party_id = assignPartyModl.Party_id, 
+                Party_id = assignPartyModl.Party_id,
                 Product_id = assignPartyModl.Product_id
             };
             await _Context.Assign_party_tbl.AddAsync(assignParty);
@@ -76,7 +75,7 @@ namespace Asp.Net_Exercise_03.Repository
         public async Task<bool> IsContainAssign(AssignPartyModel assignModl)
         {
             var contains = await _Context.Assign_party_tbl.Where(x => x.Party_id == assignModl.Party_id && x.Product_id == assignModl.Product_id).FirstOrDefaultAsync();
-            if(contains == null)
+            if (contains == null)
             {
                 return false;
             }
@@ -86,6 +85,6 @@ namespace Asp.Net_Exercise_03.Repository
             }
         }
 
-        
+
     }
 }

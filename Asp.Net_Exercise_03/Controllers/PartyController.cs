@@ -37,10 +37,10 @@ namespace Asp.Net_Exercise_03.Controllers
             if (ModelState.IsValid)
             {
                 bool contain = await _PartyRepo.IsContainsParty(partyModl);
-                if ( contain == true)
+                if (contain == true)
                 {
                     msg = "A record with the same values already exists try something else!!";
-                    return RedirectToAction(nameof(PartyAdd), new { isSuccess = 2, Message = msg });                             
+                    return RedirectToAction(nameof(PartyAdd), new { isSuccess = 2, Message = msg });
                 }
                 else
                 {
@@ -87,7 +87,7 @@ namespace Asp.Net_Exercise_03.Controllers
                     msg = "record Updated Successfully.";
                     return RedirectToAction(nameof(PartyEdit), new { isSuccess = 1, Message = msg });
                 }
-                
+
             }
             return View("PartyAddEdit");
         }
