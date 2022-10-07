@@ -72,7 +72,7 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpPost("{product_id:int}/{product_name}")]
-        public async Task<IActionResult> ProductEdit([FromRoute] ProductModel productModl)
+        public async Task<IActionResult> ProductEdit(ProductModel productModl)
         {
             ViewData["Title"] = "Edit Product";
             string msg = "";

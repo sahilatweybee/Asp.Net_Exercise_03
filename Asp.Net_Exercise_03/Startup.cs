@@ -48,7 +48,17 @@ namespace Asp.Net_Exercise_03
             app.UseAuthorization();
 
             //----------------------Writting Controller & Action Name to Default Route-------------------//
-            app.UseRewriter(new RewriteOptions().AddRewrite("/", "Party/PartyList", true));
+            //app.UseRewriter(new RewriteOptions().AddRewrite("/", "/Party/PartyList", true));
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path == "/")
+                {
+                    context.Response.Redirect("Party/PartyList/", true);
+
+                    return;
+                }
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {

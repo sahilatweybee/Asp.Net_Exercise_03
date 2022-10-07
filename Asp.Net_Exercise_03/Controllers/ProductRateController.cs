@@ -74,19 +74,18 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpPost("{Rate_id:int}/{Product_id:int}/{Product_rate:int}")]
-        public async Task<IActionResult> ProductRateEdit([FromRoute] ProductRateModel rateModl)
+        public async Task<IActionResult> ProductRateEdit(ProductRateModel rateModl)
         {
             ViewData["Title"] = "Edit Product Rate";
             string msg = "";
             if (ModelState.IsValid)
             {
                 await _RateRepository.EditProductRateAsync(rateModl);
-                msg = "Rate added successfully.";
+                msg = "Rate Updated successfully.";
                 return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, Message = msg });
 
             }
             return View("ProductRateAddEdit", rateModl);
-            // new { IsSuccess = true, Message = msg}
         }
     }
 }

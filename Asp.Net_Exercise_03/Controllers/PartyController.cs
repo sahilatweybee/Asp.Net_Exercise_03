@@ -52,7 +52,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("PartyAddEdit");
         }
 
-        [Route("Party/PartyList/{party_id:int}")]
+        [Route("{party_id:int}")]
         public async Task<IActionResult> DeleteParty([FromRoute] int party_id)
         {
             await _PartyRepo.DeletePartyAsync(party_id);
@@ -60,7 +60,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return RedirectToAction(nameof(PartyList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet("Party/PartyList/{party_id:int}/{party_name}")]
+        [HttpGet("Party/PartyEdit/{party_id:int}/{party_name}")]
         public ViewResult PartyEdit([FromRoute] PartyModel PartyModl, int isSuccess = 0, string Message = "")
         {
             ViewData["Title"] = "Edit Party";
@@ -69,8 +69,8 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("PartyAddEdit");
         }
 
-        [HttpPost("Party/PartyList/{party_id:int}/{party_name}")]
-        public async Task<IActionResult> PartyEdit([FromRoute] PartyModel partyModl)
+        [HttpPost("Party/PartyEdit/{party_id:int}/{party_name}")]
+        public async Task<IActionResult> PartyEdit(PartyModel partyModl)
         {
             ViewData["Title"] = "Edit Party";
             string msg = "";
