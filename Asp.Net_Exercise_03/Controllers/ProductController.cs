@@ -48,27 +48,26 @@ namespace Asp.Net_Exercise_03.Controllers
                 }
 
             }
-            return View("ProductAddEdit");
+            return View("ProductAddEdit", productModl);
         }
 
-        [Route("{product_id:int}")]
-        public async Task<IActionResult> Deleteproduct([FromRoute] int product_id)
+        public async Task<IActionResult> Deleteproduct([FromQuery] int product_id)
         {
             await _ProductRepo.DeleteProductAsync(product_id);
             string msg = $"Product With Id = {product_id} Deleted SuccessFully.";
             return RedirectToAction(nameof(ProductList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet("{product_id:int}/{product_name}")]
-        public ViewResult ProductEdit([FromRoute] int product_id, string product_name, int isSuccess = 0, string Message = "")
+        [HttpGet]
+        public ViewResult ProductEdit([FromQuery] ProductModel productModl, int isSuccess = 0, string Message = "")
         {
             ViewBag.message = Message;
             ViewBag.IsSuccess = isSuccess;
             ViewData["Title"] = "Edit Product";
-            return View("productAddEdit");
+            return View("productAddEdit", productModl);
         }
 
-        [HttpPost("{product_id:int}/{product_name}")]
+        [HttpPost]
         public async Task<IActionResult> ProductEdit(ProductModel productModl)
         {
             ViewData["Title"] = "Edit Product";
@@ -88,7 +87,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 }
 
             }
-            return View("productAddEdit");
+            return View("productAddEdit", productModl);
         }
     }
 }

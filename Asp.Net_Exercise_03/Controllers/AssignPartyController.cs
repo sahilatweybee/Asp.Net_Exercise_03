@@ -50,27 +50,26 @@ namespace Asp.Net_Exercise_03.Controllers
                     return RedirectToAction(nameof(AssignPartyAdd), new { isSuccess = 1, Message = msg });
                 }
             }
-            return View("AssignPartyAddEdit");
+            return View("AssignPartyAddEdit", AssignpartyModl);
         }
 
-        [Route("{assign_id:int}")]
-        public async Task<IActionResult> DeleteAssign([FromRoute] int assign_id)
+        public async Task<IActionResult> DeleteAssign([FromQuery] int assign_id)
         {
             await _AssignPartyRepo.DeleteAssignAsync(assign_id);
             string msg = $"Record With Id = {assign_id} Deleted SuccessFully.";
             return RedirectToAction(nameof(AssignPartyList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet("{assign_id:int}/{party_id:int}/{product_id:int}")]
-        public ViewResult AssignPartyEdit([FromRoute] AssignPartyModel assignModl, string Message = "", int isSuccess = 0)
+        [HttpGet]
+        public ViewResult AssignPartyEdit([FromQuery] AssignPartyModel assignModl, string Message = "", int isSuccess = 0)
         {
             ViewData["Title"] = "Edit Assigned Party";
             ViewBag.message = Message;
             ViewBag.IsSuccess = isSuccess;
-            return View("AssignPartyAddEdit");
+            return View("AssignPartyAddEdit", assignModl);
         }
 
-        [HttpPost("{assign_id:int}/{party_id}/{product_id}")]
+        [HttpPost]
         public async Task<IActionResult> AssignPartyEdit(AssignPartyModel assignModl)
         {
             ViewData["Title"] = "Edit Assigned Party";
@@ -90,7 +89,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 }
 
             }
-            return View("AssignPartyAddEdit");
+            return View("AssignPartyAddEdit", assignModl);
         }
 
         public async Task<JsonResult> GetProductsForParty(int id)

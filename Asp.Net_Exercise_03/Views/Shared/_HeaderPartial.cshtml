@@ -2,8 +2,7 @@
     var controller = ViewContext.RouteData.Values["controller"].ToString();
     string ActivePg(string str)
     {
-        var isActive = str.Equals(controller);
-        if (isActive)
+        if (str.Equals(controller))
         {
             return "nav-link active";
         }

@@ -52,16 +52,15 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("ProductRateAddEdit", rateModl);
         }
 
-        [Route("{Rate_id:int}")]
-        public async Task<IActionResult> DeleteProductRate([FromRoute] int Rate_id)
+        public async Task<IActionResult> DeleteProductRate([FromQuery] int Rate_id)
         {
             await _RateRepository.DeleteProductRateAsync(Rate_id);
             string msg = $"Record With Id = {Rate_id} Deleted SuccessFully.";
             return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet("{Rate_id:int}/{Product_id:int}/{Product_rate:int}")]
-        public ViewResult ProductRateEdit([FromRoute] ProductRateModel rateModl, string Message = "", int isSuccess = 0)
+        [HttpGet]
+        public ViewResult ProductRateEdit([FromQuery] ProductRateModel rateModl, string Message = "", int isSuccess = 0)
         {
             ViewBag.message = Message;
             ViewBag.IsSuccess = isSuccess;
@@ -69,7 +68,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("ProductRateAddEdit", rateModl);
         }
 
-        [HttpPost("{Rate_id:int}/{Product_id:int}/{Product_rate:int}")]
+        [HttpPost]
         public async Task<IActionResult> ProductRateEdit(ProductRateModel rateModl)
         {
             ViewData["Title"] = "Edit Product Rate";
