@@ -60,7 +60,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return RedirectToAction(nameof(AssignPartyList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet]
+        [HttpGet("{Assign_id}")]
         public ViewResult AssignPartyEdit([FromQuery] AssignPartyModel assignModl, string Message = "", int isSuccess = 0)
         {
             ViewData["Title"] = "Edit Assigned Party";
@@ -69,8 +69,8 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("AssignPartyAddEdit", assignModl);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AssignPartyEdit(AssignPartyModel assignModl)
+        [HttpPost("{Assign_id}")]
+        public async Task<IActionResult> AssignPartyEdit([FromRoute]int Assign_id, AssignPartyModel assignModl)
         {
             ViewData["Title"] = "Edit Assigned Party";
             string msg = "";
@@ -85,7 +85,7 @@ namespace Asp.Net_Exercise_03.Controllers
                 {
                     await _AssignPartyRepo.EditAssignPartyAsync(assignModl);
                     msg = "Assign Party Updated Successfully.";
-                    return RedirectToAction(nameof(AssignPartyEdit), new { isSuccess = 1, Message = msg });
+                    return RedirectToAction(nameof(AssignPartyList), new { isSuccess = 1, Message = msg });
                 }
 
             }

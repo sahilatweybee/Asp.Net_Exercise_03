@@ -58,7 +58,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return RedirectToAction(nameof(ProductList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet]
+        [HttpGet("{Product_id}")]
         public ViewResult ProductEdit([FromQuery] ProductModel productModl, int isSuccess = 0, string Message = "")
         {
             ViewBag.message = Message;
@@ -67,8 +67,8 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("productAddEdit", productModl);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ProductEdit(ProductModel productModl)
+        [HttpPost("{Product_id}")]
+        public async Task<IActionResult> ProductEdit([FromRoute] int Product_id, ProductModel productModl)
         {
             ViewData["Title"] = "Edit Product";
             string msg = "";
@@ -83,11 +83,11 @@ namespace Asp.Net_Exercise_03.Controllers
                 {
                     await _ProductRepo.EditProductAsync(productModl);
                     msg = "Product Updated Successfully.";
-                    return RedirectToAction(nameof(ProductEdit), new { isSuccess = 1, Message = msg });
+                    return RedirectToAction(nameof(ProductList), new { isSuccess = 1, Message = msg});
                 }
 
             }
-            return View("productAddEdit", productModl);
+            return View("productAddEdit");
         }
     }
 }

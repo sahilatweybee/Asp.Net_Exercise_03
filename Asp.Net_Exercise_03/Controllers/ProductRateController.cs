@@ -59,7 +59,7 @@ namespace Asp.Net_Exercise_03.Controllers
             return RedirectToAction(nameof(ProductRateList), new { isSuccess = 1, message = msg });
         }
 
-        [HttpGet]
+        [HttpGet("{Rate_id}")]
         public ViewResult ProductRateEdit([FromQuery] ProductRateModel rateModl, string Message = "", int isSuccess = 0)
         {
             ViewBag.message = Message;
@@ -68,8 +68,8 @@ namespace Asp.Net_Exercise_03.Controllers
             return View("ProductRateAddEdit", rateModl);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ProductRateEdit(ProductRateModel rateModl)
+        [HttpPost("{Rate_id}")]
+        public async Task<IActionResult> ProductRateEdit([FromRoute] int Rate_id, ProductRateModel rateModl)
         {
             ViewData["Title"] = "Edit Product Rate";
             string msg = "";
