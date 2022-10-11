@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Asp.Net_Exercise_03.DataBase
+namespace Asp.Net_Exercise_03.Data
 {
     public class PartyDbContext : DbContext
     {

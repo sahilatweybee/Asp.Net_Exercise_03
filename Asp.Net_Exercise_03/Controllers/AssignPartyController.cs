@@ -70,7 +70,7 @@ namespace Asp.Net_Exercise_03.Controllers
         }
 
         [HttpPost("{Assign_id}")]
-        public async Task<IActionResult> AssignPartyEdit([FromRoute]int Assign_id, AssignPartyModel assignModl)
+        public async Task<IActionResult> AssignPartyEdit([FromRoute] int Assign_id, AssignPartyModel assignModl)
         {
             ViewData["Title"] = "Edit Assigned Party";
             string msg = "";

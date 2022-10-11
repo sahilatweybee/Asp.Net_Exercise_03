@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Asp.Net_Exercise_03.DataBase
+namespace Asp.Net_Exercise_03.Data
 {
     public class ProductRate
     {

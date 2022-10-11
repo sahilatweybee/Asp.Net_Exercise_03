@@ -1,4 +1,4 @@
-﻿using Asp.Net_Exercise_03.DataBase;
+﻿using Asp.Net_Exercise_03.Data;
 using Asp.Net_Exercise_03.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;

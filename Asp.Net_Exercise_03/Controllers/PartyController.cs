@@ -28,7 +28,7 @@ namespace Asp.Net_Exercise_03.Controllers
             ViewBag.isSuccess = isSuccess;
             return View("PartyAddEdit");
         }
- 
+
         [HttpPost]
         public async Task<IActionResult> PartyAdd(PartyModel partyModl)
         {
